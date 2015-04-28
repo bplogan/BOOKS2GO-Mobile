@@ -37,7 +37,7 @@
  </div><!-- header -->
 	
 	
-	<div data-role="content" id="content">
+	<div data-role="content" id="content">						  <div id="deviceready" class="blink" style="display:none">                <p class="event listening">Connecting to Device</p>                <p class="event received">Device is Ready</p>            </div>		
 	<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
 	<div id="title" class="title">Post a textbook</div>
 	<div id="crumbdiv" style="display:none">
@@ -46,14 +46,14 @@
 		</ul>
 	</div>
 	
-		<div id="search">
+		<div id="search">						<a href="#" id="scan" class="ui-btn ui-icon-camera ui-btn-icon-left">Scan a barcode</a>						<p style="text-align:center">or</p>						
 			<select id="ddlPostType" onchange="ChangeType()">
 			 	<option value="0">Post by ISBN</option>
 			 	<option value="1">Post by Title/Author</option>
 			</select>
 			 
 			<div id="type-isbn">
-			<form id="isbn-form">
+			<form id="isbn-form">																				
 	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" />
 	            <button id="btnisbn" type="submit" style="background-color: #BCED91">Search</button>
 	        </form>
@@ -167,7 +167,7 @@
 		}else{
 			$("#logout").hide();
 			$("#login").show();
-		}
+		}								var app = {	    // Application Constructor	    initialize: function() {	        this.bindEvents();	    },	    // Bind Event Listeners	    //	    // Bind any events that are required on startup. Common events are:	    // `load`, `deviceready`, `offline`, and `online`.	    bindEvents: function() {	        document.addEventListener('deviceready', this.onDeviceReady, false);	        document.getElementById('scan').addEventListener('click', this.scan, false);	        //document.getElementById('encode').addEventListener('click', this.encode, false);	    },		    // deviceready Event Handler	    //	    // The scope of `this` is the event. In order to call the `receivedEvent`	    // function, we must explicity call `app.receivedEvent(...);`	    onDeviceReady: function() {	    	        app.receivedEvent('deviceready');	    },		    // Update DOM on a Received Event	    receivedEvent: function(id) {	        var parentElement = document.getElementById(id);	        var listeningElement = parentElement.querySelector('.listening');	        var receivedElement = parentElement.querySelector('.received');		        listeningElement.setAttribute('style', 'display:none;');	        receivedElement.setAttribute('style', 'display:block;');		        console.log('Received Event: ' + id);	    },		    scan: function() {	        console.log('scanning');	        	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.scan( function (result) { 		            alert("We got a barcode\n" + 	            "Result: " + result.text + "\n" + 	            "Format: " + result.format + "\n" + 	            "Cancelled: " + result.cancelled);  		           console.log("Scanner result: \n" +	                "text: " + result.text + "\n" +	                "format: " + result.format + "\n" +	                "cancelled: " + result.cancelled + "\n");	            document.getElementById("info").innerHTML = result.text;	            console.log(result);	            /*	            if (args.format == "QR_CODE") {	                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });	            }	            */		        }, function (error) { 	            console.log("Scanning failed: ", error); 	        } );	    },		    encode: function() {	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {	            alert("encode success: " + success);	          }, function(fail) {	            alert("encoding failed: " + fail);	          }	        );		    }		};					app.initialize();
 	});
 
 	function AddBook(id){
