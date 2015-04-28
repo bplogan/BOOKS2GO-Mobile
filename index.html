@@ -68,7 +68,7 @@
 	</script>
 </head>
 
-<body>
+<body onload="init()">
 
 <div id="launcherPage" data-role="page" >
 	<div data-role="header" data-position="fixed" data-theme="a">
@@ -324,10 +324,34 @@
 
 <script>
 
+function init() {
+		
+	document.addEventListener("deviceready", deviceReady, false);
+	if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+		$("body").addClass("ios7");
+		$("body").append('');
+	}
+}
+	
+function deviceReady() {
+		
+	console.log("deviceReady");
+			
+	StatusBar.overlaysWebView(false);
+				
+	if(PushbotsPlugin.isiOS()){
+		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
+	}
+	if(PushbotsPlugin.isAndroid()){
+		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
+	}
+	
+	var uuid = device.uuid;	
+	window.localStorage.setItem("UUID", uuid);
+}
+
+
 $(document).on("pagebeforeshow","#launcherPage",function(){ // When entering pagetwo
-	
-	
-	
 	
 	$(".lst").listview();
 	if(window.localStorage.getItem("user_id")){
