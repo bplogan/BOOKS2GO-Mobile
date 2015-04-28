@@ -1,0 +1,177 @@
+
+
+@media screen and (max-width:400px) {
+
+
+#vt_menu {
+	width: 97.5%;
+	margin: 10px auto;
+}
+
+#vt_menu h4
+{
+	width:100%;
+}
+
+#vt_menu ul li  ul {
+	position: absolute;
+	left: -1px;
+	top: 100%;
+}
+
+#vt_menu  ul li:first-child {
+	border-radius: 0;
+}
+
+#vt_menu ul li  ul li:first-child {
+	border-radius: 0;
+}
+
+#vt_menu ul li  ul li:last-child {
+	
+}
+.typography_5_col ,
+.typography_3_col,
+.typography_2_col{
+
+	width: 100%;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	border: none;
+	border-radius: 0;
+	background:#F9F9F9;
+
+}
+
+.col_5_container,
+.col_3_container,
+.col_2_container  {
+	 margin-bottom: 30px;
+    margin-left: 3%;
+    margin-top: 20px;
+    width: 94%;
+	overflow:hidden;
+
+}
+
+#vt_menu .list-top
+{
+	width:100% !important;
+}
+
+#vt_menu ol li
+{
+	width:100%;
+}
+
+.col_1,
+.col_2,
+.col_3,
+.col_4,
+.col_5  {
+	width: 96.96%;
+	margin-bottom: 20px;
+	padding: 0;
+	padding-left: 1.52%;
+	padding-right: 1.52%;
+
+}
+
+.col_4_fullwidth,
+.col_3_fullwidth,
+.col_2_fullwidth  {
+	width: 96.96%;
+	margin-bottom: 20px;
+	padding: 0;
+	padding-left: 1.52%;
+	padding-right: 1.52%;
+
+}
+.image {
+
+	margin-bottom: 5px;
+
+}
+
+
+#jnix-menu
+{
+	margin:10px;
+	margin-right:1%;
+}
+
+		#jnix-menu label {display:block;}
+		#jnix-menu label ~ input[type="checkbox"] ~ #nav-wrap #vt_menu {display:none;}
+		#jnix-menu label ~ input[type="checkbox"]:checked ~ #nav-wrap #vt_menu {display:block;}​
+
+/* nav-wrap */
+		#nav-wrap {
+			position: relative;
+			margin-top:-20px;
+		}
+		
+		#jnix-menu .fa-bars 
+		{
+			display:block !important;
+		}
+		
+		#jnix-menu input[type=checkbox]
+		{
+			display:block;
+			opacity: 0;
+			height: 48px;
+    		width: 48px;
+		}
+		
+		#jnix-menu input[type=checkbox] + span {
+    	height: 31px;
+    	width: 31px;
+		position:absolute;
+		z-index:-1;
+		margin-top:-50px;
+		color:#159F85;
+		padding:5px;
+		font-size:35px;
+		padding-top:-5px;
+		}
+		
+		#jnix-menu input[type=checkbox]:checked + span  {
+    	height: 31px;
+    	width: 31px;
+    	padding: 0 0 0 0px;
+		color:#fff;
+		padding:5px;
+		font-size:35px;
+		}
+
+		#jnix-menu #nav-trigger {
+		display: block;
+		cursor:pointer
+		}
+		
+		#jnix-menu #nav-wrap * {
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+	
+		/* main nav */
+		#vt_menu {
+			margin: 0; 
+			position: absolute;
+			z-index: 1;
+			
+		}
+
+		#vt_menu:after {
+			content: '';
+			position: absolute;
+		}	
+		
+		#vt_menu .contact
+		{
+		top:40px;
+		}
+
+}

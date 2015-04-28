@@ -1,0 +1,107 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>books2go</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+
+	
+	 
+	
+
+	</script>
+	<script id="panel-init">
+		
+	</script>
+</head>
+
+<body>
+
+<div id="profilePage" data-role="page" >
+	<div data-role="header" data-position="fixed" data-theme="a">
+      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+    		<a href="search.html" data-role="button" data-icon="search" data-iconpos="notext" data-ajax="false">Search</a>
+        </div>
+      
+        
+    
+ </div><!-- header -->
+	
+	<div data-role="content" id="content">
+		
+		<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
+		
+		<div id="welcome" class="title"></div>
+		<div class="text">
+			<a data-ajax="false" href="mybooks.html" data-role="button" data-icon="books">My Books</a>	
+			<a data-ajax="false" href="postbook.html" data-role="button" data-icon="plus">Post a Book</a>
+			<a data-ajax="false" href="search.html" data-role="button" data-icon="search">Search Books</a>
+			<a data-ajax="false" href="wishlist.html" data-role="button" data-icon="star">Wish list</a>
+			<a data-ajax="false" href="editprofile.html" data-role="button" data-icon="user">Edit Profile</a>
+			<a data-ajax="false" href="editschools.html" data-role="button" data-icon="home">Edit Schools</a>
+			<a data-ajax="false" href="changepassword.html" data-role="button" data-icon="lock">Change password</a>		
+		</div>	
+			
+	</div>
+
+<div data-role="panel" id="mypanel" data-theme="a" style='padding:0;margin:0;'>
+<img src="images/logo3.png" width="100%" />
+   <div style="height:30px"></div>
+   <ul data-role="listview" id="menu">
+   <li><a href="javascript:GoHome()" data-rel="close" data-ajax="false">Home</a></li>
+
+  <li><a href="search.html" data-rel="close" data-ajax="false">Search</a></li>
+  <li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">
+    <h2>Profile</h2>
+    <ul data-role="listview" data-theme="a">
+       <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
+      <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
+      <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
+      <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
+      <li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>
+    </ul>
+  </li>
+  <li style="display:none" id="logout"><a href="logout.html" data-rel="user" data-ajax="false">Log out</a></li>
+  <li style="display:none" id="login"><a href="login.html" data-rel="user" data-ajax="false">Log In</a></li>
+  
+</ul>
+</div><!-- /panel -->
+
+<script>
+
+$(document).on("pagebeforeshow","#profilePage",function(){ // When entering pagetwo
+	
+	$("#welcome").html(window.localStorage.getItem("username"));
+	if(window.localStorage.getItem("user_id")){
+		if(window.localStorage.getItem("user_id") > 0){
+			$("#anon-foot").hide();
+			$("#user-foot").show();
+			$("#uprofile").show();
+			$("#logout").show();
+			$("#login").hide();
+			
+		}
+	}else{
+		$("#logout").hide();
+		$("#login").show();
+		
+	}
+});
+
+
+
+</script>
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>

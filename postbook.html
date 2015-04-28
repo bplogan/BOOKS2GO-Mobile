@@ -1,0 +1,332 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>books2go</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	
+	
+
+
+	</script>
+	<script id="panel-init">
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+		});
+	</script>
+	
+	
+</head>
+
+<body >
+
+<div id="postBookPage" data-role="page"  >
+	<div data-role="header" data-position="fixed" data-theme="a" id="header">
+      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+    		
+        </div>
+        
+        
+    
+ </div><!-- header -->
+	
+	
+	<div data-role="content" id="content">
+	<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
+	<div id="title" class="title">Post a textbook</div>
+	<div id="crumbdiv" style="display:none">
+		<ul id="crumb"  data-role="listview" data-filter="false" data-inset="false" data-theme="a" >
+			<li><a class='ui-btn ui-btn-icon-left ui-icon-carat-l'  href='javascript:ResetView()' data-ajax='false'>Post a textbook</a></li>
+		</ul>
+	</div>
+	
+		<div id="search">
+			<select id="ddlPostType" onchange="ChangeType()">
+			 	<option value="0">Post by ISBN</option>
+			 	<option value="1">Post by Title/Author</option>
+			</select>
+			 
+			<div id="type-isbn">
+			<form id="isbn-form">
+	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" />
+	            <button id="btnisbn" type="submit" style="background-color: #BCED91">Search</button>
+	        </form>
+	        
+	        	<div class="title">What is an ISBN?</div>
+	        	<p>The International Standard Book Number (ISBN) is a 10 or 13-digit number that uniquely identifies books published internationally.</p>
+	        	<p>This number is generally found on the back cover of your textbook. It is the quickest way to list your books. Give it a try.</p>
+	        	<p style="text-align:center"><img src="http://www.books2go.ca/books/images/isbn.gif" /></p>
+	        </div>
+	        
+	        <div id="type-title" style="display:none">
+	        <form id="title-form">
+	        	
+	            <input type="text" placeholder="<enter title>" id="txt-title" />
+	            <input type="text" placeholder="<enter author>" id="txt-author" />
+	            <button id="btntitle" type="submit" style="background-color: #BCED91">Search</button>
+	        </form>
+	        </div>
+        </div>
+        
+        <div id="results">
+        	
+        </div>
+        
+        <div style="clear:both;height:20px"></div>
+        
+        
+        
+        <div id="post" style="display:none;">
+        	<form id="post-form">
+        	<select id="ddlSchool"></select>
+        	<input type="text" id="txt-course" placeholder="course" />
+        	<input type="text" id="txt-course2" placeholder="course 2" />
+        	<input type="number" id="txt-price" placeholder="price" />
+        	<textarea id="txt-desc" placeholder="description"></textarea>
+        	<select id="ddlCondition">
+        		<option value="0">Book condition</option>
+        		<option value="1">Excellent</option>
+        		<option value="2">Very Good</option>
+        		<option value="3">Good</option>
+        		<option value="4">Average</option>
+        		<option value="5">Poor</option>
+        		<option value="6">Very Poor</option>
+        		<option value="7">Horrible</option>
+        	</select>
+        	<button type="submit" style="background-color: #BCED91">Post Textbook</button>
+        	<button type="button" style="background-color: #FFDCDD" onclick='ResetView()'>Cancel</button>
+        </form>
+        </div>
+        
+        
+        
+        
+		<div id="err"></div>
+	</div>
+         
+<div data-role="popup" id="pop" data-overlay-theme="a" data-theme="a" data-dismissible="true" style="max-width:400px;font-size:12px">
+	<p id="err"></p>
+</div>
+
+
+  <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
+	<div id="user-foot">
+	  	<a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >My Profile</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post Book</a>
+    </div>
+    <div id="anon-foot" style="display:none">
+    	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
+    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
+    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Search</a>
+		
+    </div>
+  </div>
+
+<div data-role="panel" id="mypanel" data-theme="a" style='padding:0;margin:0;'>
+<img src="images/logo3.png" width="100%" />
+   <div style="height:30px"></div>
+   <ul data-role="listview" id="menu">
+   <li><a href="javascript:GoHome()" data-rel="close" data-ajax="false">Home</a></li>
+
+  <li><a href="search.html" data-rel="close" data-ajax="false">Search</a></li>
+  <li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">
+    <h2>Profile</h2>
+    <ul data-role="listview" data-theme="a">
+     <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
+      <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
+      <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
+      <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
+      <li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>
+    </ul>
+  </li>
+   <li style="display:none" id="logout"><a href="logout.html" data-rel="user" data-ajax="false">Log out</a></li>
+  <li style="display:none" id="login"><a href="login.html" data-rel="user" data-ajax="false">Log In</a></li>
+  
+</ul>
+    
+</div><!-- /panel -->
+
+
+<script>
+
+	$(document).on("pagebeforeshow","#postBookPage",function(){ // When entering pagetwo
+		if(window.localStorage.getItem("user_id")){
+			if(window.localStorage.getItem("user_id") > 0){
+				$("#uprofile").show();
+				$("#logout").show();
+				$("#login").hide();
+			}
+		}else{
+			$("#logout").hide();
+			$("#login").show();
+		}
+	});
+
+	function AddBook(id){
+		$(".book").hide();
+		$("#book" + id).show();
+		$("#search").hide();
+		$("#post").show();
+		$("#btnReset").show();
+		window.localStorage.setItem("ADDID",id);
+		$("#crumbdiv").show();
+		$("#title").hide();
+		$(".loadmore").hide();
+	}
+	
+	function PostBook(){
+		var id = window.localStorage.getItem("ADDID");
+		var course = $("#txt-course").val();
+		var course2 = $("#txt-course2").val();
+		var schoolid = $("#ddlSchool").val();
+		var price = $("#txt-price").val();
+		var condition = $("#ddlCondition").val();
+		var UID = window.localStorage.getItem("user_id");
+		var email = window.localStorage.getItem("email");
+		var desc = $("#txt-desc").val();
+		if(id){
+			if(schoolid > 0 && price > 0 && condition > 0){
+				$.ajax({
+			        type: "POST",
+			        url: "http://www.books2go.ca/mobiservice/add_book.php?",
+			        data: {'id' : id, 'course' : course, 'course2' : course2, 'schoolid' : schoolid, 'price' : price, 'condition' : condition, 'UID' : UID, 'email' : email, 'desc' : desc},
+			        dataType: "json",
+			        success: function(data) {
+			        	showErrorMessage("Your book has been posted!", $("#err"), 0);
+			        	window.location = "mybooks.html";
+			     	},
+			 	 	error: function(xhr, desc, err) {
+			         alert(xhr);
+			         alert("Details: " + desc + "\nError:" + err);
+			       }
+			   });         		
+			}else{
+				showErrorMessage("Please ensure you have entered a school, book price, and book condition.", $("#err"), 0);
+			}
+		
+		}
+	}
+	
+	function PostISBN(page){
+		
+		getisbn = $("#txt-isbn").val();
+		author = $("#txt-author").val();
+		title = $("#txt-title").val();
+		var UID = window.localStorage.getItem("user_id");
+		$("#btnisbn").html("Searching...");
+		$("#btntitle").html("Searching...");
+		$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/get_newbook.php?search=new&wl=0",
+	        data: {'getisbn' : getisbn, 'author' : author, 'title' : title, 'UID' : UID, 'page' : page},
+	        dataType: "json",
+	        success: function(data) {
+	        	
+	        	if(data.error == ''){
+	        		if(page > 1){
+	        			$("#p" + page).hide();
+		        		$("#results").append(data.result);
+	        		}else{
+	        			
+	        			$("#results").html('');
+		        		$("#results").html(data.result);
+	        		}
+	        	
+	        		SetWidth();
+	        		$("#ddlSchool").empty().append(data.schools);
+	        		$( "#ddlSchool" ).selectmenu( "refresh" );
+	        		if(data.single == 1){
+	        			$("#search").hide();
+	        			$("#post").show();
+	        			$("#btnReset").show();
+	        		}
+	        		
+	        	}else{
+	        		showErrorMessage(data.error, $("#err"), 0);
+	        	}
+	        	$("#btnisbn").html("Post");
+	    		$("#btntitle").html("Post");
+	        	
+	        	
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+	}
+	
+	
+	function LoadMore(page){
+		
+		PostISBN(page);
+		$("#a" + page).html("Loading...");
+	}
+	
+	function ChangeType(){
+		$("#txt-isbn").val('');
+		$("#txt-author").val('');
+		$("#txt-title").val('');
+		var sType = $("#ddlPostType").val();
+		if(sType == 0){
+			$("#type-isbn").show();
+			$("#type-title").hide();
+		}else{
+			$("#type-isbn").hide();
+			$("#type-title").show();
+		}
+	}
+		
+	function SetWidth(){
+		var tw = $("#postBookPage").width(); 
+	    var w = $("#postBookPage").width() - 190;
+	   
+	    $(".info").css("width", w);
+	}
+	
+	$('#isbn-form').submit(function (e) {
+	    e.preventDefault();
+	    PostISBN(1);
+	});
+	
+	$('#title-form').submit(function (e) {
+	    e.preventDefault();
+	    PostISBN(1);
+	});
+	$('#post-form').submit(function (e) {
+	    e.preventDefault();
+	    PostBook();
+	});
+	
+function ResetView(){
+		$("#title").hide();
+		$(".book").show();
+		$("#post").hide();
+		$("#search").show();
+		$("#btnReset").hide();
+		$("#crumbdiv").hide();
+		$(".loadmore").hide();
+		var id = window.localStorage.getItem("ADDID");
+		if(id){
+		  $('html, body').animate({
+			    scrollTop: $('#book' + id).offset().top - 50
+			  });
+		}
+	}
+	
+	</script>
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>

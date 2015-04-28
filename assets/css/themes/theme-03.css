@@ -1,0 +1,82 @@
+
+
+#vt_menu
+{
+	background:#D76101 !important;
+}
+
+#vt_menu .list-top
+{
+	background:#D76101;
+}
+
+#vt_menu ul li:hover{
+    background: #F77B00;
+}
+
+#vt_menu input
+{
+	
+}
+
+#vt_menu .other_links i
+{
+	color:#D76101;
+}
+
+#vt_menu .other_links li:hover
+{
+	background:#fff !important;
+	cursor:pointer;
+}
+
+.first {
+    background: #D76101;
+	color:#fff;
+	}
+	
+#vt_menu h4
+{
+	color:#D76101;
+	border-bottom: 1px solid #D76101 !important;
+}
+
+#vt_menu ul ul li a
+{
+	color:#D76101 !important;
+}
+
+#vt_menu input[type="submit"]
+{
+	background:#D76101 !important;
+}
+
+.other_links li a
+{
+	color:#666666 !important;
+	box-shadow:none !important;
+}
+
+#vt_menu .icons a 
+{
+	color:#D76101;
+}
+
+@media screen and (max-width: 1023px) {
+	
+	#jnix-menu
+	{
+		background:url(../../images/list-white.png) no-repeat #D76101;
+		box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset;
+	}
+	
+	#jnix-menu input[type=checkbox]:checked + span  {
+		color:#000 !important;
+	}
+	
+	#jnix-menu input[type=checkbox] + span {
+		color:#D76101 !important;
+	}
+	
+
+}

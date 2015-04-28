@@ -1,0 +1,91 @@
+[data-role=header]{background-color:#F9F9F9 !important; border:none !important;height:40px !important }
+[data-role=footer]{background-color:transparent !important;background:url('../images/foot_bg.png');height:65px !important;padding:0 !important}
+h5{padding:0;margin:0}
+font-size:14px;
+.cfix{clear:both}
+.err{background-color:#fbe3e4;padding:5px;color:#D12F19}
+ul{list-style:none;padding:0;margin:0}
+li{padding:0;margin:0}
+ul.sub-item{margin-left:15px;font-size:14px;}
+ul.suc-item li{padding:3px;}
+a{text-decoration:none !important};
+
+div.clearfix{clear:both}
+
+
+img.logo{max-width:300px;text-align:center;margin:0;padding:0}
+p.logop{text-align:center;margin:0;padding:0}
+.title{font-weight:bold;margin-bottom:10px;font-size:18px;}
+
+
+/* search results and single book display */
+#results,#mybooks{width:100%}
+div.book{padding-top:10px;font-size:12px;clear:both}
+div.cover{float:left;width:130px}
+div.cover img{border:1px solid #F0F0F0;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;  }
+div.info{float:left;margin-left:10px}
+div.info-title{float:left;font-weight:bold;font-size: 14px}
+div.info-heading{float:left;width:70px;color:#666;font-size: 14px}
+div.info-value{float:left;max-width:190px;font-size:14px}
+.no-cover{width:124px;height:160px;line-height:160px;background-color:#EEE;border:1px solid #C0C0C0;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;text-align:center;color:#C0C0C0;font-size:16px }
+.price{color:green;font-size:18px;}
+.attention{color:#3385FF}
+
+
+div.school-title{margin-top:20px;margin-bottom:10px;font-size:18px}
+div.info-message{font-style:italic;font-size:12px}
+
+#crumbdiv{font-size:14px;margin-top:10px;margin-bottom:30px}
+#crumbdiv p{margin:0 !important;padding:0 !important}
+.crumbprice{color:#00804B;font-weight:bold}
+
+ui-input-text{font-size:12px !important}
+
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+    margin: 0;
+}
+.ui-li-static.ui-collapsible {
+    padding: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+    border-top-width: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {
+    border-bottom-width: 0;
+}
+
+
+
+/* Icons */
+.ui-icon-books:after{
+	background:#ACACAC url("../images/book_stack.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	box-shadow: none;
+    -webkit-box-shadow: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-books:after {
+		background:#ACACAC url("../images/book_stack.png") 50% 50% no-repeat;
+		background-size: 18px 18px;
+		background-color:#ACACAC;
+	}
+	
+}
+.ui-icon-booksfoot:after{
+	background:#435A6A url("../images/book_stack.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	box-shadow: none;
+    -webkit-box-shadow: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-booksfoot:after {
+		background:#435A6A url("../images/book_stack.png") 50% 50% no-repeat;
+		background-size: 18px 18px;
+		background-color:#435A6A;
+	}
+	
+}
+
+
+
+
+

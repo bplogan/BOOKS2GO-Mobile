@@ -1,0 +1,82 @@
+
+
+#vt_menu
+{
+	background:#323433 !important;
+}
+
+#vt_menu .list-top
+{
+	background:#FF0034;
+}
+
+#vt_menu ul li:hover{
+    background: #FF0034;
+}
+
+#vt_menu input
+{
+	
+}
+
+#vt_menu .other_links i
+{
+	color:#FF0034;
+}
+
+#vt_menu .other_links li:hover
+{
+	background:#fff !important;
+	cursor:pointer;
+}
+
+.first {
+    background: #FF0034;
+	color:#fff;
+	}
+	
+#vt_menu h4
+{
+	color:#FF0034;
+	border-bottom: 1px solid #FF0034 !important;
+}
+
+#vt_menu ul ul li a
+{
+	color:#FF0034 !important;
+}
+
+#vt_menu input[type="submit"]
+{
+	background:#FF0034 !important;
+}
+
+.other_links li a
+{
+	color:#666666 !important;
+	box-shadow:none !important;
+}
+
+#vt_menu .icons a 
+{
+	color:#FF0034;
+}
+
+@media screen and (max-width: 1023px) {
+	
+	#jnix-menu
+	{
+		background:url(../../images/list-white.png) no-repeat #FF0034;
+		box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset;
+	}
+	
+	#jnix-menu input[type=checkbox]:checked + span  {
+		color:#000 !important;
+	}
+	
+	#jnix-menu input[type=checkbox] + span {
+		color:#FF0034 !important;
+	}
+	
+
+}

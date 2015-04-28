@@ -1,0 +1,233 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>books2go</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+	<link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<script src="phonegap.js"></script> 
+	
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	
+	
+
+
+	</script>
+	<script id="panel-init">
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+		});
+	</script>
+	
+	
+</head>
+
+<body >
+
+<div id="schoolPage" data-role="page"  >
+	<div data-role="header" data-position="fixed" data-theme="a" id="header">
+      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+    		<a href="search.html" data-role="button" data-icon="search" data-iconpos="notext">Search</a>
+        </div>
+        <h6></h6>
+        
+    
+ </div><!-- header -->
+	
+	
+	<div data-role="content" id="content">
+	
+	<div>	
+	<div id="mybooks"></div>
+	</div>
+	</div>
+         
+<div data-role="popup" id="pop" data-overlay-theme="a" data-theme="a" data-dismissible="true" style="max-width:400px;font-size:12px">
+	<p id="err"></p>
+</div>
+
+<div data-role="panel" id="mypanel" data-theme="b" style='padding:0;margin:0;'>
+	
+  <ul data-role="listview">
+ 
+
+  <li><a href="#" data-rel="close">Home</a></li>
+
+  <li><a href="search.html"data-rel="close">Search</a></li>
+  <li data-role="collapsible" data-iconpos="right" data-inset="false">
+    <h2>Profile</h2>
+    <ul data-role="listview" data-theme="b">
+     <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
+      <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
+      <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
+      <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
+      <li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>
+    </ul>
+  </li>
+  
+</ul>
+    
+</div><!-- /panel -->
+
+
+<script>
+
+$(document).on("pagebeforeshow","#schoolPage",function(){ // When entering pagetwo
+	DisplayRecentBooks();
+});
+
+
+$('#myBooksPage').bind('pageshow', function() {
+			
+});
+		
+	function DisplayMyBooks(){
+		var UID = window.localStorage["user_id"];
+			$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/get_mybooks.php",
+	        data: {'UID' : UID},
+	        dataType: "json",
+	        success: function(data) {
+	        	if(data.bookcount > 0){
+		    		$("#mybooks").html(data.result);   
+		    		$( ".faak" ).selectmenu();
+		    		SetWidth();
+	        	}else{
+	        		$.mobile.changePage("school.html");
+	        	}
+	    		
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+	}
+	
+	function SendEmail(){
+		
+		var BID = window.localStorage["BID"];
+		var UID = window.localStorage["UID"];
+		var MSG = $("#txt-message").val();
+		var EMAIL = $("#txt-email").val();
+		
+			$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/contact.php",
+	        data: {'BID' : BID, 'UID' : UID, 'MSG' : MSG, 'EMAIL' : EMAIL},
+	        dataType: "json",
+	        success: function(data) {
+	    		if(data.error == ''){
+	    			 showErrorMessage(data.success, $("#err"), 0);
+	    			 ShowBook();
+	    		}else{
+	    			showErrorMessage(data.error, $("#err"), 0);
+	    		}    	
+	        	
+	        	
+	        	
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+	}
+	function SetWidth(){
+		var tw = $("#myBooksPage").width(); 
+	    var w = $("#myBooksPage").width() - 180;
+		
+	  
+	    
+	    $(".info").css("width", w);
+	}
+	function ShowContact(){
+		$("#logo").hide();
+		$("#contact").show();
+		$("#crumbdiv").show();
+		$("#btnContact").hide();
+		$("#book").hide();
+		
+		var e = jQuery.Event("keyup");
+	    $("#txt-message").trigger(e);
+	   
+	   
+	}
+	
+	
+	
+	
+	function ShowBook(){
+		$("#logo").show();
+		$("#contact").hide();
+		$("#crumbdiv").hide();
+		$("#btnContact").show();
+		$("#book").show();
+	}
+	
+	function BookAction(BID){
+		var action = $("#ddlBookAction" + BID).val();
+		switch(action) {
+	    case 'slap':
+	        alert("OH KNOW YOU DI-ENT");
+	        break;
+	    case 'view':
+	    	window.localStorage["BID"] = BID;
+			window.location= "book.html";
+	        break;
+	    default:
+	       
+	}
+	}
+	
+	
+	$( window ).on( "orientationchange", function( event ) {
+		 var ori = window.orientation;
+		 window.setTimeout(function() {
+			    //insert logic with height or width calulations here.
+		
+		 if(ori == 90 || ori == -90){
+			 	//alert($(window).height() + " x1 " + $(window).width());
+				var tw = $(window).width(); 
+				var w = $(window).width() - 190;
+			    $(".info").css("width", w);
+			    //alert("applied " + w);
+		 }else{
+			    //alert($(window).height() + " x " + $(window).width());
+				var tw = $(window).width(); 
+				var w = $(window).width() - 190;
+			    $(".info").css("width", w);
+			    //alert(" else applied " + w);
+		 }
+			}, 200);
+	  	
+	});	
+	
+	function SetWidth(){
+		var tw = $("#myBooksPage").width(); 
+	    var w = $("#myBooksPage").width() - 190;
+	   
+	    $(".info").css("width", w);
+	}
+	
+	$('#frm-contact').submit(function (e) {
+	    e.preventDefault();
+	    SendEmail();
+	});
+	
+	
+	</script>
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>

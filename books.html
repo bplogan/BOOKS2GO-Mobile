@@ -1,0 +1,134 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>books2go</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+	<link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	
+	
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="phonegap.js"></script>
+	<script>
+	
+	
+
+
+	</script>
+	<script id="panel-init">
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+		});
+	</script>
+	
+	
+</head>
+
+<body >
+
+<div id="booksPage" data-role="page" data-ajax="true">
+	<div data-role="header" data-position="fixed" data-theme="a">
+      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+    		<a href="search.html" data-role="button" data-icon="search" data-iconpos="notext">Search</a>
+        </div>
+        <h6></h6>
+        
+    
+ </div><!-- header -->
+	
+	
+	<div data-role="content" id="content">
+		
+		<div>
+			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
+			
+							
+			<div id="results">
+				
+			</div>	
+			
+			
+	
+	
+	
+		</div>
+	
+         
+	</div>
+
+
+<div data-role="panel" id="mypanel" data-theme="b" style='padding:0;margin:0;'>
+	
+    <ul style='list-style: none;margin:0;padding:0;width:100%'>
+       <li style="margin:0;padding:0;width:100%"><a href="javascript:GoHome()" class="ui-btn ui-shadow ui-btn-b ui-icon-home ui-btn-icon-right ui-corner-all">Home</a></li>
+    		 <li style="margin:0;padding:0;width:100%"><a href="javascript:GoSearch()"  class="ui-btn ui-shadow ui-btn-b ui-icon-search ui-btn-icon-right ui-corner-all">Search</a></li>
+    	    <li style="margin:0;padding:0;width:100%"><a href="javascript:GoLogin()"  class="ui-btn ui-shadow ui-btn-b ui-icon-lock ui-btn-icon-right ui-corner-all">Login</a></li>
+    	    <li style="margin:0;padding:0;width:100%"><a href="#demo-links" data-rel="close" class="ui-btn ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-right ui-corner-all">Close Menu</a></li>
+  
+    </ul>
+</div><!-- /panel -->
+
+
+<script>
+
+		$('#booksPage').bind('pageshow', function() {
+			
+		
+		 if(window.localStorage["SEARCH"]){
+		 	
+		 	$("#results").html(JSON.parse(window.localStorage["SEARCH"]));
+		    SetWidth();
+		 	
+		 }
+			
+		
+		});
+		
+		
+		
+	$( window ).on( "orientationchange", function( event ) {
+		 var ori = window.orientation;
+		 window.setTimeout(function() {
+			    //insert logic with height or width calulations here.
+		
+		 if(ori == 90 || ori == -90){
+			 	//alert($(window).height() + " x1 " + $(window).width());
+				var tw = $(window).width(); 
+				var w = $(window).width() - 180;
+			    $(".info").css("width", w);
+			    //alert("applied " + w);
+		 }else{
+			    //alert($(window).height() + " x " + $(window).width());
+				var tw = $(window).width(); 
+				var w = $(window).width() - 180;
+			    $(".info").css("width", w);
+			    //alert(" else applied " + w);
+		 }
+			}, 200);
+	  	
+	});	
+	
+	function SetWidth(){
+		var tw = $(window).width(); 
+		
+	    var w = $(window).width() - 180;
+	    $(".info").css("width", w);
+	}
+	
+	function GoBook(BID){
+		window.localStorage["BID"] = BID;
+		window.localStorage["LASTPAGE"] = "books.html";
+		window.location= "book.html";
+	}
+	</script>
+
+</div><!-- /page -->
+
+
+
+</body>
+</html>
