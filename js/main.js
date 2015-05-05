@@ -62,5 +62,29 @@ $(document).on('blur', 'input, textarea', function() {
 });
 
 
+function GetInboxCount(){
+	var UID = window.localStorage.getItem("user_id")
+	$.ajax({
+	       type: "POST",
+	       url: "http://www.books2go.ca/mobiservice/get_inboxcount.php",
+	       data: {'UID' : UID,'SENT' : '0'},
+	       dataType: "json",
+	       success: function(data) {
+	    	  
+	    	    if(data.count > 0){
+	    	    	$(".inbox-count").html(data.count);
+	    	    }else{
+	    			$(".inbox-count").hide();
+	    		}
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });      
+	
+}
+
+
 
 

@@ -54,7 +54,7 @@
 					
 					<form id="frm-search">
 						<fieldset>
-							<input type="text" id="txt-search" required placeholder="title, author, isbn, or posting ID" />
+							<input type="text" id="txt-search" required="required" placeholder="title, author, isbn, or posting ID" />
 						</fieldset>
 						
 						<fieldset>
@@ -62,11 +62,11 @@
 						</fieldset>
 						
 						<fieldset>
-							<select id="ddl-school" required></select>
+							<select id="ddl-school"></select>
 						</fieldset>
 						
 						<fieldset>
-							 <p id="err" class="err" style="display:none">All fieds are required.</p>
+							 <p id="err" class="err" style="display:none">Please select a Region.</p>
 							 <button id="btn-search" type="submit" data-icon="search" style="background-color: #BCED91">Search</button>
 						</fieldset>
 					</form>
@@ -76,6 +76,9 @@
 			
 			<div id="results" style="display:none">
 				<div class='title' id="rtitle"></div>
+				<select name="ddl-sort" id="ddl-sort" onchange="Sort()">
+				
+				</select>
 				<div id="theresults"></div>
 			</div>	
 			
@@ -90,10 +93,11 @@
 
   <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
 	<div id="user-foot">
-	  	<a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >My Profile</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post Book</a>
-    </div>
+	  <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
+		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' ></span></a>
+   </div>
     <div id="anon-foot" style="display:none">
     	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
     	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
@@ -115,6 +119,7 @@
     <ul data-role="listview" data-theme="a">
       <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
       <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="inbox.html" data-rel="close" data-ajax="false">&nbsp; - Inbox</a></li>
       <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
       <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
       <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
@@ -167,13 +172,15 @@ $(document).on("pageshow","#searchPage",function(){
 	
 		var SBID =  window.localStorage.getItem("SBID");
 		if(SBID > 0){
+			if($('#bk' + SBID).length > 0){
 			$('html, body').animate({
 			    scrollTop: $('#bk' + SBID).offset().top - 50
 			  });
+			}
 			window.localStorage.setItem("SBID", "0");
 		}
 	
-	
+		GetInboxCount();
 });
 
 
@@ -209,7 +216,8 @@ function GetRegions(){
         async:false,
         dataType: "json",
         success: function(data) {
-        	$("#ddl-region").html(data.regionsselect);
+        	
+        	$("#ddl-region").empty().append(data.regionsselect);
         	$("#ddl-region").selectmenu('refresh');
 	       
      	},
@@ -243,7 +251,8 @@ function GetSchools(RID){
 	        success: function(data) {
 	        	
 	        	$("#ddl-school").empty();
-		        $("#ddl-school").html(data.schoolsselect);
+	        	$("#ddl-school").append("<option value='0'>All schools in " + $("#ddl-region option:selected").text() + "</option>");
+		        $("#ddl-school").append(data.schoolsselect);
 		        $('#ddl-school').selectmenu('refresh');
 		       
 	     	},
@@ -274,9 +283,26 @@ function GetSchools(RID){
 		}
 		
 		if(TXT !== '' && TXT != null && TXT != undefined){
+			var count = "";
+			if(window.localStorage.getItem("search-count") !== undefined && window.localStorage.getItem("search-count") !== null){
+				count = window.localStorage.getItem("search-count");
+			}
+			
+			$("#ddl-sort").empty().append("<option value='none'>Sort Results</option><option value='price'>By Price</option><option value='title'>By Title</option><option value='author'>By Author</option>");
+			$("#ddl-sort").selectmenu("refresh");
+			if(window.localStorage.getItem("search-conditions") !== undefined && window.localStorage.getItem("search-conditions") !== null){
+				$("#ddl-sort").append(window.localStorage.getItem("search-conditions"));
+				$("#ddl-sort").selectmenu("refresh");
+			}
+			if(window.localStorage.getItem("search-courses") !== undefined && window.localStorage.getItem("search-courses") !== null){
+				$("#ddl-sort").append(window.localStorage.getItem("search-courses"));
+				$("#ddl-sort").selectmenu("refresh");
+			}
+			
+			
 			
 			$("#txt-search").val(TXT);
-			$("#rtitle").html("Results for " + TXT);
+			$("#rtitle").html(count + " results for " + TXT);
 			
 			
 		}		
@@ -307,49 +333,91 @@ function GetSchools(RID){
 		
 	}
 		
-	function Search(){
+	function Search(s,page){
 		$("#err").hide();
 		$("#searchlocation").html($("#ddl-school").find(":selected").text());
-		
+		var UID = 0;
+		if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
+			UID = window.localStorage.getItem("user_id");
+		}
 		var TXT = $("#txt-search").val();
 		var RID = $("#ddl-region").val();
 		var SID = $("#ddl-school").val();
+		if(SID == undefined || SID == null){
+			SID = 0;
+		}
+			
+	
 		window.localStorage.setItem("search-text", TXT);
 		window.localStorage.setItem("search-region", RID);
 		window.localStorage.setItem("search-school", SID);
-		if(TXT !== "" && SID > 0){
-			$("#btn-search").html("Searching...");
-			var c = "n";
-			var h = "yes";
-			$.ajax({
-		        type: "POST",
-		        url: "http://www.books2go.ca/mobiservice/search.php",
-		        async:false,
-		        data: {'c' : c, 'h' : h, 'searchText' : TXT, 'searchLocation' : SID},
-		        dataType: "json",
-		        success: function(data) {
-		        	if(data.result == ''){
-		        		alert(data.result);
-		        		$("#theresults").html("No books found for '" + TXT + "'");
-		        		$("#theresults").show();
-		        		$("#btn-search").html("Search");
-		        		$("#rtitle").html("");
-		        	}else{
-		        		
-			        	ShowResults()
-			        	window.localStorage.setItem("search-data",JSON.stringify(data.result));
-			        	$("#theresults").html(data.result);
-			        	$("#rtitle").html("Results for " + TXT + " <br />@ " + $("#ddl-school").find(":selected").text());
-			    		$("#btn-search").html("Search");
-			    		 SetWidth();
-		        	}
-		        	
-		     	},
-		 	 	error: function(xhr, desc, err) {
-		         alert(xhr);
-		         alert("Details: " + desc + "\nError:" + err);
-		       }
-		   });  
+		
+		if(RID >= 0){
+			if( (TXT !== "" && SID >= 0) || (TXT !== "" && RID >= 0) ){
+				$("#btn-search").html("Searching...");
+				
+				
+				
+				$.ajax({
+			        type: "POST",
+			        url: "http://www.books2go.ca/mobiservice/search.php",
+			        async:false,
+			        data: {'searchText' : TXT, 'searchLocation' : SID, 'UID' : UID, 'SORT' : s, 'RID' : RID, 'PAGE' : page},
+			        dataType: "json",
+			        success: function(data) {
+			        
+			        	if(data.result == ''){
+			        		
+			        		$("#theresults").html("No books found for '" + TXT + "'");
+			        		$("#theresults").show();
+			        		$("#btn-search").html("Search");
+			        		$("#rtitle").html("");
+			        	}else{
+			        		
+				        	ShowResults()
+				        	window.localStorage.setItem("search-data",JSON.stringify(data.result));
+				        	window.localStorage.setItem("search-count",data.count);
+				        	window.localStorage.setItem("search-courses",data.courses);
+				        	window.localStorage.setItem("search-conditions",data.conditions);
+				        	
+				        	if(page > 1){
+			        			$("#p" + page).hide();
+			        			$("#theresults").append(data.result);
+				        		
+			        		}else{
+			        			
+			        			$("#theresults").html('');
+			        			$("#theresults").append(data.result);
+			        		}
+				        	
+				        	
+				        	
+				        	var loc = $("#ddl-school").find(":selected").text()
+				        	if(loc == ""){
+				        		loc = "All schools in Canada";
+				        	}
+				        	if(data.id == "0"){
+				        		$("#rtitle").html(data.count + " results for " + TXT + " <br />@ " + loc);
+				        	}else{
+				        		$("#rtitle").html("Search found posting ID " + TXT);
+				        	}
+				    		$("#btn-search").html("Search");
+				    		SetWidth();
+				    		$("#ddl-sort").empty().append("<option value='none'>Sort Results</option><option value='price'>By Price</option><option value='title'>By Title</option><option value='author'>By Author</option>");
+							$("#ddl-sort").append(data.conditions);
+				    		$("#ddl-sort").append(data.courses);
+				    		$("#ddl-sort").selectmenu("refresh");
+				    	}
+			        	
+			     	},
+			 	 	error: function(xhr, desc, err) {
+			         alert(xhr);
+			         alert("Details: " + desc + "\nError:" + err);
+			       }
+			   });  
+			}else{
+				$("#err").show();
+			}
 	   }else{
 	   		$("#err").show();
 	   }       		
@@ -383,11 +451,51 @@ function GetSchools(RID){
 	
 	$('#frm-search').submit(function (e) {
 	    e.preventDefault();
-	    Search();
+	    Search('',1);
 	});
 	
 	
+	function Sort(){
+		
+		switch($("#ddl-sort").val()) {
+	    case 'price':
+	    	//sort by price
+	    	$(".book").show();
+	    	Search('book_price ASC,' , 1);
+	        break;
+	    case 'author':
+	        //sort by author
+	        $(".book").show();
+	        Search('book_author1 ASC,', 1);
+	        break;
+	    case 'title':
+	        //sort by title
+	        $(".book").show();
+	        Search('book_title ASC,', 1);
+	        break;
+	    case 'none':
+	    	//no sort
+	    	$(".book").show();
+	    	Search('',1)
+	        break;   
+	    default:
+	    	SortOther();
+	        //sorting by class or condition
+		}
+	}
 	
+	function SortOther(){
+		
+		$(".book").hide();
+		$("." + $("#ddl-sort").val()).show();
+		
+	}
+	
+	function LoadMore(page){
+		
+		Search('',page);
+		$("#a" + page).html("Loading...");
+	}
 	
 	
 	</script>

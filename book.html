@@ -51,13 +51,14 @@
 			</div>
 			
 			<button onclick="ShowContact()" id="btnContact" type="button" data-icon="mail" data-iconpos="left" style="background-color: #BCED91">Contact Seller</button>
+			<p style="text-align:center;display:none" id="contacted" class="div-contacted">(<img src="../books/images/check.png" /> You have already contacted this seller)</p> 
 			
 			<div id="contact" style="display:none"> 
 				<b>Contact Seller</b>
 				<form id="frm-contact">
 					<fieldset>Please enter your email and message below to contact this seller</fieldset>
 					<fieldset>
-						<input type="email" id="txt-email" placeholder="Your email" required />
+						<input type="email" id="txt-email" placeholder="Your email" required="required" />
 					</fieldset>
 					<fieldset>
 						<textarea rows="5" id="txt-message" required></textarea>
@@ -84,10 +85,11 @@
 
   <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
 	<div id="user-foot">
-	  	<a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >My Profile</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post Book</a>
-    </div>
+	  	<a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
+		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' ></span></a>
+   </div>
     <div id="anon-foot" style="display:none">
     	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
     	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
@@ -108,6 +110,7 @@
     <ul data-role="listview" data-theme="a">
       <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
       <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="inbox.html" data-rel="close" data-ajax="false">&nbsp; - Inbox</a></li>
       <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
       <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
       <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
@@ -127,6 +130,15 @@
 
 
 		$('#bookPage').bind('pageshow', function() {
+			
+			$.mobile.loading( "show", {
+				  text: "loading book...",
+				  textVisible: true,
+				  theme: 'a',
+				  html: ""
+				});
+			
+			
 			
 			DisplayBook();
 			var search = window.localStorage.getItem("search");
@@ -151,25 +163,31 @@
 				$("#user-foot").hide();
 			}
 			
-			
+			GetInboxCount();
 		});
 		
 	function DisplayBook(){
+		var UID = window.localStorage["user_id"];
 		var BID = window.localStorage["BID"];
 			$.ajax({
 	        type: "POST",
 	        url: "http://www.books2go.ca/mobiservice/book.php",
-	        data: {'b' : BID},
+	        data: {'b' : BID, 'UID' : UID},
 	        dataType: "json",
 	        success: function(data) {
-	    		    	
+	    		
 	        	$("#book").html(data.result);
 	        	var crumb = window.localStorage.setItem("crumb",data.crumb);
 	        	
 				$("#txt-message").html(data.msg);
 				
+				if(data.contacted == "1"){
+					$("#contacted").show();
+				}
+				
 	        	SetWidth();
 	        	
+	        	 $.mobile.loading( "hide" );
 	     	},
 	 	 	error: function(xhr, desc, err) {
 	         alert(xhr);
@@ -181,9 +199,11 @@
 	function SendEmail(){
 		
 		var BID = window.localStorage["BID"];
-		var UID = window.localStorage["UID"];
+		var UID = window.localStorage["user_id"];
 		var MSG = $("#txt-message").val();
 		var EMAIL = $("#txt-email").val();
+		alert(BID + ',' + UID + ',' + MSG + ',' + EMAIL);
+		if(EMAIL.trim() !== ""){
 		
 			$.ajax({
 	        type: "POST",
@@ -205,7 +225,10 @@
 	         alert(xhr);
 	         alert("Details: " + desc + "\nError:" + err);
 	       }
-	   });         		
+	   });  
+		}else{
+			showErrorMessage("Please enter an email address", $("#err"), 0);
+		}
 	}
 	
 	function ShowContact(){
@@ -220,6 +243,11 @@
 	    
 	    $("#crumb").empty().append(window.localStorage.getItem("crumb"));
 		$('#crumb').listview('refresh');
+		
+		var email = window.localStorage.getItem("email");
+		if(email !== undefined){
+			$("#txt-email").val(email);
+		}
 	   
 	   
 	}
@@ -270,6 +298,11 @@
 	    SendEmail();
 	});
 	
+	function GoBook(id){
+		window.localStorage["BID"] = id;
+		window.localStorage.setItem("search","1");
+		window.location = "book.html";
+	}
 	
 	</script>
 
