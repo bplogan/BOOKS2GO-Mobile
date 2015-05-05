@@ -349,9 +349,9 @@ function deviceReady() {
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
 	alert("here");
-	alert("1" + PushbotsPlugin.sharedInstance().regID());
+
 	alert("2" + Pushbots.sharedInstance().regID());
-	alert("3" + PushbotsPlugin.getInstance().getSharedPrefs().getRegistrationID());
+	alert("3" + Pushbots.getInstance().getSharedPrefs().getRegistrationID());
 	alert("there");
 			 
 
