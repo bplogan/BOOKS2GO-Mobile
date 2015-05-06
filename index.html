@@ -358,7 +358,7 @@ function deviceReady() {
 	        data: {'UUID' : uuid, 'UID' : UID},
 	        dataType: "json",
 	        success: function(data) {
-	    			        
+	    		window.location = "profile.html";        
 	     	},
 	 	 	error: function(xhr, desc, err) {
 	         alert(xhr);
@@ -366,6 +366,13 @@ function deviceReady() {
 	       }
 	   });         		
 		
+	}else{
+		$(".lst").listview();
+		GetTotals();
+		$("#logout").hide();
+		$("#login").show();
+		$("#anon-foot").show();
+		$("#user-foot").hide();
 	}
 			 
 
@@ -374,27 +381,6 @@ function deviceReady() {
 	
 	
 }
-
-
-$(document).on("pagebeforeshow","#launcherPage",function(){ // When entering pagetwo
-	
-	$(".lst").listview();
-	if(window.localStorage.getItem("user_id")){
-		if(window.localStorage.getItem("user_id") > 0){
-		window.location = "profile.html";
-		}
-	}else{
-		GetTotals();
-		$("#logout").hide();
-		$("#login").show();
-		$("#anon-foot").show();
-		$("#user-foot").hide();
-	}
-	
-});
-
-
-
 
 function GoSearch(RID,SID){
 	window.localStorage.setItem("search-text","");
