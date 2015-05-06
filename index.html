@@ -348,7 +348,7 @@ function deviceReady() {
 	
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
-	PushbotsPlugin.setAlias(uuid);
+	PushbotsPlugin.setAlias("testy");
 	
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		var UID = window.localStorage.getItem("user_id");
