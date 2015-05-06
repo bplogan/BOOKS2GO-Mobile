@@ -348,11 +348,25 @@ function deviceReady() {
 	
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
-	alert("here");
-
-	alert("2" + Pushbots.sharedInstance().regID());
-	alert("3" + Pushbots.getInstance().getSharedPrefs().getRegistrationID());
-	alert("there");
+	PushbotsPlugin.setAlias(uuid);
+	
+	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
+		var UID = window.localStorage.getItem("user_id");
+		$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+	        data: {'UUID' : uuid, 'UID' : UID},
+	        dataType: "json",
+	        success: function(data) {
+	    			        
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+		
+	}
 			 
 
 	
