@@ -338,17 +338,21 @@ function deviceReady() {
 	console.log("deviceReady");
 			
 	StatusBar.overlaysWebView(false);
-				
-	if(PushbotsPlugin.isiOS()){
-		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
-	}
-	if(PushbotsPlugin.isAndroid()){
-		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
-	}
 	
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
-	PushbotsPlugin.setAlias("testy");
+				
+	if(PushbotsPlugin.isiOS()){
+		PushbotsPlugin.setAlias("testy");
+		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
+	}
+	if(PushbotsPlugin.isAndroid()){
+		PushbotsPlugin.setAlias("testy");
+		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
+	}
+	
+	
+	
 	
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		var UID = window.localStorage.getItem("user_id");
