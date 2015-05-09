@@ -340,7 +340,6 @@ function deviceReady() {
 	StatusBar.overlaysWebView(false);
 	
 	
-				
 	
 	
 	
@@ -356,6 +355,10 @@ function deviceReady() {
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
 	}
 	
+	var uuid = device.uuid;	
+	window.localStorage.setItem("UUID", uuid);
+				
+	PushbotsPlugin.setAlias("testy1234");
 		
 		var UID = window.localStorage.getItem("user_id");
 		$.ajax({
