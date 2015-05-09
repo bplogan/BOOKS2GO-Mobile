@@ -343,7 +343,7 @@ function deviceReady() {
 	window.localStorage.setItem("UUID", uuid);
 				
 	if(PushbotsPlugin.isiOS()){
-		PushbotsPlugin.setAlias(uuid);
+		
 		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
 	}
 	if(PushbotsPlugin.isAndroid()){
