@@ -359,7 +359,7 @@ function deviceReady() {
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
 				
-	PushbotsPlugin.setAlias("testy1234");
+	PushbotsPlugin.setAlias(uuid);
 		
 		var UID = window.localStorage.getItem("user_id");
 		$.ajax({
