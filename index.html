@@ -343,15 +343,15 @@ function deviceReady() {
 	window.localStorage.setItem("UUID", uuid);
 				
 	if(PushbotsPlugin.isiOS()){
-		PushbotsPlugin.setAlias("testy");
+		PushbotsPlugin.setAlias(uuid);
 		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
 	}
 	if(PushbotsPlugin.isAndroid()){
-		PushbotsPlugin.setAlias("testy");
+		PushbotsPlugin.setAlias(uuid);
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
 	}
 	
-	
+	PushbotsPlugin.setAlias(uuid);
 	
 	
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
