@@ -84,8 +84,14 @@
 	
 	
 	<div data-role="content" id="content">
-		
-		<div>
+		<div id="div-loading">
+			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
+			
+			<p class='logop'>Loading...<br /><img src="images/ajax-loader.gif" /></p>
+			
+		</div>
+			
+		<div id="div-main" style="display:none">
 			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
 			
 			<div class="text">
@@ -345,7 +351,6 @@ function deviceReady() {
 	
 		
 	console.log("deviceReady");
-			
 	StatusBar.overlaysWebView(false);
 	
 	PushbotsPlugin.debug(true);
@@ -355,56 +360,42 @@ function deviceReady() {
 	if(PushbotsPlugin.isAndroid()){
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
 	}
+	
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
-	
-	
+		
 	setTimeout(function(){ 
-		alert("alias");
-		PushbotsPlugin.setAlias(uuid); 
-		}, 3000);
-	
-	
-	
-	
-	
-	
-	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
-		
-		
-	
 				
-	
+			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
-		var UID = window.localStorage.getItem("user_id");
-		$.ajax({
-	        type: "POST",
-	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-	        data: {'UUID' : uuid, 'UID' : UID},
-	        dataType: "json",
-	        success: function(data) {
-	    		//window.location = "profile.html";        
-	     	},
-	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
-	       }
-	   });         		
+				PushbotsPlugin.setAlias(uuid); 
+				var UID = window.localStorage.getItem("user_id");
+				$.ajax({
+			        type: "POST",
+			        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+			        data: {'UUID' : uuid, 'UID' : UID},
+			        dataType: "json",
+			        success: function(data) {
+			    		//window.location = "profile.html";        
+			     	},
+			 	 	error: function(xhr, desc, err) {
+			         alert(xhr);
+			         alert("Details: " + desc + "\nError:" + err);
+			       }
+			   });         		
+			
+			}else{
+				$("#div-loading").hide();
+				$("#div-main").show();
+				$(".lst").listview();
+				GetTotals();
+				$("#logout").hide();
+				$("#login").show();
+				$("#anon-foot").show();
+				$("#user-foot").hide();
+			}
 		
-	}else{
-		$(".lst").listview();
-		GetTotals();
-		$("#logout").hide();
-		$("#login").show();
-		$("#anon-foot").show();
-		$("#user-foot").hide();
-	}
-			 
-
-	
-	
-	
-	
+	}, 3000);
 }
 
 function GoSearch(RID,SID){

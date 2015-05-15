@@ -124,18 +124,8 @@ function Login(){
         data: {'EMAIL' : email, 'PASS' : pass, 'UUID' : uuid},
         dataType: "json",
         success: function(data) {
-        	window.localStorage.setItem("user_id", data.user_id);
-        	window.localStorage.setItem("username", data.username);
-        	window.localStorage.setItem("email", data.email);
-        	window.localStorage.setItem("school", data.school);
-        	window.localStorage.setItem("schoolName", data.schoolName);
-        	window.localStorage.setItem("schoolFullName", data.schoolFullName);
-        	window.localStorage.setItem("loggedIn", data.loggedIn);
-        	window.localStorage.setItem("region", data.region);
-        	window.localStorage.setItem("subregion", data.subregion);
-        	window.localStorage.setItem("SEC", data.SEC);
-        	if(data.error == ''){
-        		window.location = "profile.html";
+        				
+        	if(data.error == ''){				window.localStorage.setItem("user_id", data.user_id);	        	window.localStorage.setItem("username", data.username);		        	window.localStorage.setItem("email", data.email);		        	window.localStorage.setItem("school", data.school);		        	window.localStorage.setItem("schoolName", data.schoolName);		        	window.localStorage.setItem("schoolFullName", data.schoolFullName);		        	window.localStorage.setItem("loggedIn", data.loggedIn);		        	window.localStorage.setItem("region", data.region);		        	window.localStorage.setItem("subregion", data.subregion);		        	window.localStorage.setItem("SEC", data.SEC);        		        		        		SetPushBots();        		
         	}else{
         		alert("error");
         		showErrorMessage(data.error, $("#err"), 0);
@@ -148,7 +138,7 @@ function Login(){
        }
    });  
 }
-
+function SetPushBots(){		PushbotsPlugin.debug(true);	if(PushbotsPlugin.isiOS()){	PushbotsPlugin.initializeiOS("553fa49017795918698b4571");	}	if(PushbotsPlugin.isAndroid()){		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");	}	var uuid = device.uuid;		window.localStorage.setItem("UUID", uuid);		setTimeout(function(){         					PushbotsPlugin.setAlias(uuid); 		var UID = window.localStorage.getItem("user_id");		$.ajax({	        type: "POST",	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",	        data: {'UUID' : uuid, 'UID' : UID},	        dataType: "json",	        success: function(data) {	    		window.location = "profile.html";       	     	},	 	 	error: function(xhr, desc, err) {	         alert(xhr);	         alert("Details: " + desc + "\nError:" + err);	       }	   });         			}, 3000);		}
 $('#frm-login').submit(function (e) {
     e.preventDefault();
     Login();
