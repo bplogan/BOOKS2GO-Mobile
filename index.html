@@ -72,259 +72,22 @@
 <body onload="init()">
 
 <div id="launcherPage" data-role="page" >
-	<div data-role="header" data-position="fixed" data-theme="a">
-      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
-    		
-        </div>
-     
-        
-    
- </div><!-- header -->
+
 	
 	
 	<div data-role="content" id="content">
-		<div id="div-loading">
-			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
-			
-			<p class='logop'>Loading...<br /><img src="images/ajax-loader.gif" /></p>
+		<div class='center' style="text-align:center">
+			<p style="text-align: center"><img style='width:200px' src="images/logo3.png" alt="" /></p>
+		
+		<img src="images/ajax-loader.gif" />
 			
 		</div>
 			
-		<div id="div-main" style="display:none">
-			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
-			
-			<div class="text">
-								
-				<b>Welcome to Books2go.</b>
-				<p>
-					Connect with students from your campus to buy and sell used university textbooks.
-					<ul>
-						<li>It's free to use. Buy and sell directly with other students... not books2go!</li>
-						<li><span id="sTotalBooks"></span>+ textbooks available <span id="sNewToday"></span></li>
-						<li>Does it work? Yes!.. we've helped students sell $<span id="sTotalSales"></span> worth of used textbooks.</li>
-					</ul>
-				</p>
-			</div>
-			
-			
-			
-		 <div style="height:30px"></div>	
-        <ul id="schools2" data-role="listview" data-filter="false" data-inset="false" data-theme="a" class="ui-listview ui-group-theme-a">
-            <li data-role="collapsible" data-iconpos="left" data-inset="false" >
-                <h2>British Columbia</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(1,28)">British Columbia Institute of Technology</a></li>
-                    <li><a href="javascript:GoSearch(1,114)">Camosun College</a></li>
-                    <li><a href="javascript:GoSearch(1,29)">Capilano University</a></li>
-                    <li><a href="javascript:GoSearch(1,91)">Columbia Bible College</a></li>
-                    <li><a href="javascript:GoSearch(1,368)">Columbia College</a></li>
-                    <li><a href="javascript:GoSearch(1,31)">Douglas College</a></li>
-                    <li><a href="javascript:GoSearch(1,34)">Emily Carr University of Art + Design</a></li>
-                    <li><a href="javascript:GoSearch(1,220)">Fraser International College</a></li>
-                    <li><a href="javascript:GoSearch(1,119)">Justice Institute of British Columbia</a></li>
-                    <li><a href="javascript:GoSearch(1,2)">Kwantlen Polytechnic University</a></li>
-                    <li><a href="javascript:GoSearch(1,97)">Langara College</a></li>
-                    <li><a href="javascript:GoSearch(1,118)">Nicola Valley Institute of Technology</a></li>
-                    <li><a href="javascript:GoSearch(1,248)">Northern Lights College</a></li>
-                    <li><a href="javascript:GoSearch(1,205)">Okanagan College</a></li>
-                    <li><a href="javascript:GoSearch(1,32)">RAIC Syllabus</a></li>
-                    <li><a href="javascript:GoSearch(1,116)">Royal Roads University</a></li>
-                    <li><a href="javascript:GoSearch(1,25)">Simon Fraser University</a></li>
-                    <li><a href="javascript:GoSearch(1,226)">Stenberg College</a></li>
-                    <li><a href="javascript:GoSearch(1,33)">Thompson Rivers University</a></li>
-                    <li><a href="javascript:GoSearch(1,30)">Trinity Western University</a></li>
-                    <li><a href="javascript:GoSearch(1,27)">University of British Columbia</a></li>
-                    <li><a href="javascript:GoSearch(1,355)">University of British Columbia Okanagan</a></li>
-                    <li><a href="javascript:GoSearch(1,117)">University of Northern British Columbia</a></li>
-                    <li><a href="javascript:GoSearch(1,1)">University of the Fraser Valley</a></li>
-                    <li><a href="javascript:GoSearch(1,107)">University of Victoria</a></li>
-                    <li><a href="javascript:GoSearch(1,113)">Vancouver Community College</a></li>
-                    <li><a href="javascript:GoSearch(1,115)">Vancouver Island University</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Alberta</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(3,124)">Athabasca University</a></li>
-                    <li><a href="javascript:GoSearch(3,125)">Grant MacEwan University</a></li>
-                    <li><a href="javascript:GoSearch(3,162)">Lakeland College</a></li>
-                    <li><a href="javascript:GoSearch(3,123)">Mount Royal University</a></li>
-                    <li><a href="javascript:GoSearch(3,163)">NorQuest College</a></li>
-                    <li><a href="javascript:GoSearch(3,285)">Northern Alberta Institute of Technology</a></li>
-                    <li><a href="javascript:GoSearch(3,164)">Red Deer College</a></li>
-                    <li><a href="javascript:GoSearch(3,120)">University of Alberta</a></li>
-                    <li><a href="javascript:GoSearch(3,121)">University of Calgary</a></li>
-                    <li><a href="javascript:GoSearch(3,122)">University of Lethbridge</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Saskatchewan</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(4,232)">Saskatchewan Institute of Applied Science and Technology</a></li>
-                    <li><a href="javascript:GoSearch(4,126)">University of Regina</a></li>
-                    <li><a href="javascript:GoSearch(4,127)">University of Saskatchewan</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Manitoba</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(5,128)">Brandon University</a></li>
-                    <li><a href="javascript:GoSearch(5,165)">Red River College</a></li>
-                    <li><a href="javascript:GoSearch(5,129)">University of Manitoba</a></li>
-                    <li><a href="javascript:GoSearch(5,130)">University of Winnipeg</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Greater Toronto Area</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(6,167)">Centennial College</a></li>
-                    <li><a href="javascript:GoSearch(6,171)">George Brown College</a></li>
-                    <li><a href="javascript:GoSearch(6,161)">Humber College</a></li>
-                    <li><a href="javascript:GoSearch(6,359)">Michener Institute</a></li>
-                    <li><a href="javascript:GoSearch(6,145)">Ryerson University</a></li>
-                    <li><a href="javascript:GoSearch(6,178)">Seneca College</a></li>
-                    <li><a href="javascript:GoSearch(6,141)">University of Toronto</a></li>
-                    <li><a href="javascript:GoSearch(6,142)">York University</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Central Ontario</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(9,151)">Brock University</a></li>
-                    <li><a href="javascript:GoSearch(9,170)">Fleming College</a></li>
-                    <li><a href="javascript:GoSearch(9,179)">Georgian College</a></li>
-                    <li><a href="javascript:GoSearch(9,146)">McMaster University</a></li>
-                    <li><a href="javascript:GoSearch(9,173)">Mohawk College</a></li>
-                    <li><a href="javascript:GoSearch(9,174)">Niagara College</a></li>
-                    <li><a href="javascript:GoSearch(9,155)">Trent University</a></li>
-                    <li><a href="javascript:GoSearch(9,149)">University of Guelph</a></li>
-                    <li><a href="javascript:GoSearch(9,148)">University of Waterloo</a></li>
-                    <li><a href="javascript:GoSearch(9,153)">Wilfrid Laurier University</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Southwestern Ontario</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(10,247)">Brescia University College</a></li>
-                    <li><a href="javascript:GoSearch(10,169)">Fanshawe College</a></li>
-                    <li><a href="javascript:GoSearch(10,172)">Lambton College</a></li>
-                    <li><a href="javascript:GoSearch(10,144)">University of Western Ontario</a></li>
-                    <li><a href="javascript:GoSearch(10,152)">University of Windsor</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Eastern Ontario</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(8,166)">Algonquin College</a></li>
-                    <li><a href="javascript:GoSearch(8,147)">Carleton University</a></li>
-                    <li><a href="javascript:GoSearch(8,168)">Durham College</a></li>
-                    <li><a href="javascript:GoSearch(8,150)">Queen's University</a></li>
-                    <li><a href="javascript:GoSearch(8,176)">St. Lawrence College</a></li>
-                    <li><a href="javascript:GoSearch(8,157)">University of Ontario Institute of Technology</a></li>
-                    <li><a href="javascript:GoSearch(8,143)">University of Ottawa</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Northern Ontario</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(7,347)">Canadore College</a></li>
-                    <li><a href="javascript:GoSearch(7,156)">Lakehead University</a></li>
-                    <li><a href="javascript:GoSearch(7,154)">Laurentian University</a></li>
-                    <li><a href="javascript:GoSearch(7,158)">Nipissing University</a></li>
-                    <li><a href="javascript:GoSearch(7,175)">Northern College</a></li>
-                    <li><a href="javascript:GoSearch(7,177)">Sault College</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Quebec</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(15,363)">Bishop's University</a></li>
-                    <li><a href="javascript:GoSearch(15,233)">Concordia University</a></li>
-                    <li><a href="javascript:GoSearch(15,365)">Laval University</a></li>
-                    <li><a href="javascript:GoSearch(15,361)">McGill University</a></li>
-                    <li><a href="javascript:GoSearch(15,366)">University of Montreal</a></li>
-                    <li><a href="javascript:GoSearch(15,367)">University of Quebec in Montreal</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>New Brunswick</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(11,132)">Mount Allison University</a></li>
-                    <li><a href="javascript:GoSearch(11,180)">New Brunswick Community College</a></li>
-                    <li><a href="javascript:GoSearch(11,133)">St. Thomas University</a></li>
-                    <li><a href="javascript:GoSearch(11,131)">University of New Brunswick</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Nova Scotia</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(12,94)">Acadia University</a></li>
-                    <li><a href="javascript:GoSearch(12,160)">Cape Breton University</a></li>
-                    <li><a href="javascript:GoSearch(12,135)">Dalhousie University</a></li>
-                    <li><a href="javascript:GoSearch(12,3)">Mount Saint Vincent University</a></li>
-                    <li><a href="javascript:GoSearch(12,137)">Saint Francis Xavier University</a></li>
-                    <li><a href="javascript:GoSearch(12,136)">Saint Mary's University</a></li>
-                    <li><a href="javascript:GoSearch(12,280)">University of King's College</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Prince Edward Island</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(13,181)">Holland College</a></li>
-                    <li><a href="javascript:GoSearch(13,134)">University of Prince Edward Island</a></li>
-                </ul>
-            </li>
-            <li data-role="collapsible" data-iconpos="left" data-inset="false">
-                <h2>Newfoundland and Labrador</h2>
-                <ul class="lst" data-role="listview" data-theme="a">
-                    <li><a href="javascript:GoSearch(14,213)">Memorial University of Newfoundland and Labrador</a></li>
-                </ul>
-            </li>
-        </ul>		</div>
 	
-         
 	</div>
-
-
-  <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
-	<div id="user-foot">
-	  	<a data-ajax="false" data-shadow="false" data-corner="false" href="mybooks.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >My Books</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post Book</a>
-    </div>
-    <div id="anon-foot" style="display:none">
-    	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Search</a>
-		
-    </div>
-  </div>
-
-
-<div data-role="panel" id="mypanel" data-theme="a" style='padding:0;margin:0;'>
-<img src="images/logo3.png" width="100%" />
-   <div style="height:30px"></div>
-   <ul data-role="listview" id="menu">
-   <li><a href="javascript:GoHome()" data-rel="close" data-ajax="false">Home</a></li>
-
-  <li><a href="search.html" data-rel="close" data-ajax="false">Search</a></li>
-  <li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">
-    <h2>Profile</h2>
-    <ul data-role="listview" data-theme="a">
-       <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
-      <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
-      <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
-      <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
-      <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
-      <li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>
-    </ul>
-  </li>
-  <li style="display:none" id="logout"><a href="logout.html" data-rel="user" data-ajax="false">Log out</a></li>
-  <li style="display:none" id="login"><a href="login.html" data-rel="user" data-ajax="false">Log In</a></li>
-  
-</ul>
-</div><!-- /panel -->
+			
+			
+	
 
 
 
@@ -368,7 +131,7 @@ function deviceReady() {
 				
 			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
-				PushbotsPlugin.setAlias(uuid); 
+				
 				var UID = window.localStorage.getItem("user_id");
 				$.ajax({
 			        type: "POST",
@@ -376,7 +139,8 @@ function deviceReady() {
 			        data: {'UUID' : uuid, 'UID' : UID},
 			        dataType: "json",
 			        success: function(data) {
-			    		//window.location = "profile.html";        
+			        	PushbotsPlugin.setAlias(uuid); 
+			    		window.location = "profile.html";        
 			     	},
 			 	 	error: function(xhr, desc, err) {
 			         alert(xhr);
@@ -385,14 +149,7 @@ function deviceReady() {
 			   });         		
 			
 			}else{
-				$("#div-loading").hide();
-				$("#div-main").show();
-				$(".lst").listview();
-				GetTotals();
-				$("#logout").hide();
-				$("#login").show();
-				$("#anon-foot").show();
-				$("#user-foot").hide();
+				window.location = "main.html";
 			}
 		
 	}, 3000);
