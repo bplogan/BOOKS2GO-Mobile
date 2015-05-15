@@ -355,6 +355,10 @@ function deviceReady() {
 	}
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
+	
+	
+	setTimeout(function(){ alert("Hello"); }, 3000);
+	
 	PushbotsPlugin.setAlias(uuid);
 	
 	
