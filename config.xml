@@ -23,21 +23,7 @@
     <!-- Customize your app and platform with the preference element. -->
   
     <preference name="orientation"                value="all" />        <!-- all: default means both landscape and portrait are enabled -->
-    <!-- Urban Airship app credentials 
-	<preference name="com.urbanairship.production_app_key" value="PRODUCTION_APP_KEY" />
-	<preference name="com.urbanairship.production_app_secret" value="PRODUCTION_APP_SECRET" />
-	-->
-	<preference name="com.urbanairship.development_app_key" value="Y170n9OfSJu259Qhk6Mylg" />
-	<preference name="com.urbanairship.development_app_secret" value="XeBZ7qa7RXm0K2TUiKnx_w" />
-	
-	<!-- If the app is in production or not -->
-	<preference name="com.urbanairship.in_production" value="false" />
-	
-	<!-- Enable push when the application launches (instead of waiting for enablePush js call).  Defaults to false -->
-	<preference name="com.urbanairship.enable_push_onlaunch" value="true" />
-	
-	<!-- Only required for Android. -->
-	<preference name="com.urbanairship.gcm_sender" value="758601829939" />
+  
     
  
    	<gap:plugin name="com.phonegap.plugins.barcodescanner"/>
@@ -54,12 +40,12 @@
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
-    <gap:plugin name="com.urbanairship.phonegap.pushnotification" version="2.7.0" />
+   
 	<gap:plugin name="org.apache.cordova.statusbar"  />
     <gap:plugin name="org.apache.cordova.network-information"  />
     <gap:plugin name="org.apache.cordova.device"  />
     <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />
-   
+    <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
     
    
     
