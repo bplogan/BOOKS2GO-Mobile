@@ -359,9 +359,12 @@ function deviceReady() {
 	window.localStorage.setItem("UUID", uuid);
 	
 	
-	setTimeout(function(){ alert("Hello"); }, 3000);
+	setTimeout(function(){ 
+		alert("alias");
+		PushbotsPlugin.setAlias(uuid); 
+		}, 30000);
 	
-	PushbotsPlugin.setAlias(uuid);
+	
 	
 	
 	
@@ -380,7 +383,7 @@ function deviceReady() {
 	        data: {'UUID' : uuid, 'UID' : UID},
 	        dataType: "json",
 	        success: function(data) {
-	    		window.location = "profile.html";        
+	    		//window.location = "profile.html";        
 	     	},
 	 	 	error: function(xhr, desc, err) {
 	         alert(xhr);
