@@ -14,33 +14,7 @@
 
 	<script>
 
-	/*
-	function init() {
-		document.addEventListener("deviceready", deviceReady, false);
-		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-			$("body").addClass("ios7");
-			$("body").append('');
-		}
-	}
 	
-	function deviceReady() {
-		console.log("deviceReady");
-		
-		//StatusBar.overlaysWebView(false);
-		//setTimeout(function() {
-        	//var networkState = navigator.connection.type;
-			//if(networkState == Connection.NONE){
-			//	$.mobile.changePage("err.html");
-			//}else{
-			
-		GetRegions();
-		GetTotals();
-			//}
-		//}, 2000);
-		
-		
-	}
-	*/
 	
 	
 	function GetSchools(RID){
@@ -116,9 +90,9 @@ function deviceReady() {
 	console.log("deviceReady");
 	StatusBar.overlaysWebView(false);
 	
-	PushbotsPlugin.debug(true);
+	//PushbotsPlugin.debug(true);
 	if(PushbotsPlugin.isiOS()){
-	PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
+		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
 	}
 	if(PushbotsPlugin.isAndroid()){
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
