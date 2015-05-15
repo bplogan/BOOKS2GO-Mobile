@@ -353,7 +353,9 @@ function deviceReady() {
 	if(PushbotsPlugin.isAndroid()){
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
 	}
-	PushbotsPlugin.setAlias("hsdkjhdskjfhdskhjf");
+	var uuid = device.uuid;	
+	window.localStorage.setItem("UUID", uuid);
+	PushbotsPlugin.setAlias(uuid);
 	
 	
 	
@@ -361,8 +363,7 @@ function deviceReady() {
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
 		
-	var uuid = device.uuid;	
-	window.localStorage.setItem("UUID", uuid);
+	
 				
 	
 		
