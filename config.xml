@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.books2go.app"
-        version   = "1.0.0">
+        version   = "1.0.1">
 
     
     
@@ -41,11 +41,13 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
    
+      
+    <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
 	<gap:plugin name="org.apache.cordova.statusbar"  />
     <gap:plugin name="org.apache.cordova.network-information"  />
     <gap:plugin name="org.apache.cordova.device"  />
     <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />
-    <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
+  
     
    
     
