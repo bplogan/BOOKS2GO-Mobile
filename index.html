@@ -200,6 +200,12 @@ function initPushwoosh_android(){
                                  
         if(typeof(userData) != "undefined") {
             console.warn('user data: ' + JSON.stringify(userData));
+            
+            if(userData.type == "wishlist"){
+            	alert("wl");
+            	window.localstorage.setItem("PUSH", "WL");
+            }
+            
         }
                                      
        
