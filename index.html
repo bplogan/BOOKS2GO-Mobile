@@ -163,7 +163,7 @@ function initPushwoosh_iOS() {
                                 //get the notification payload
                                 var notification = event.notification;
                                 var data = event.notification.userdata;
-                                window.localStorage.setItem("BID",data.bookid);
+                                window.localStorage["BID"] = data.bookid;
                                 window.localStorage.setItem("PUSHURL",data.pushurl);
                               
                                 //display alert to the user for example

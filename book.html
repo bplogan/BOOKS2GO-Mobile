@@ -169,6 +169,7 @@
 	function DisplayBook(){
 		var UID = window.localStorage["user_id"];
 		var BID = window.localStorage["BID"];
+		alert("bookid: " + BID);
 			$.ajax({
 	        type: "POST",
 	        url: "http://www.books2go.ca/mobiservice/book.php",
