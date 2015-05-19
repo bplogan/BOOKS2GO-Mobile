@@ -107,7 +107,7 @@ function deviceReady() {
 	
 	
 		
-	setTimeout(function(){ 
+	
 			
 			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
@@ -121,7 +121,7 @@ function deviceReady() {
 			        success: function(data) {
 			        	var pushurl = window.localStorage.getItem("PUSHURL");
 			        	if(pushurl !== undefined && pushurl !== null){
-			        		window.location = "book.html";       
+			        		window.location = pushurl;       
 			        	}else{
 			        		window.location = "profile.html";       
 			        	}
@@ -137,7 +137,7 @@ function deviceReady() {
 				window.location = "main.html";
 			}
 		
-	}, 5000);
+	
 }
 
 function GoSearch(RID,SID){
@@ -167,7 +167,7 @@ function initPushwoosh_iOS() {
                                 window.localStorage.setItem("PUSHURL",data.pushurl);
                               
                                 //display alert to the user for example
-                                alert(notification.aps.alert + " in our face");
+                                //alert(notification.aps.alert + " in our face");
                                 
                                
                                 //clear the app badge
@@ -207,7 +207,8 @@ function initPushwoosh_android(){
         var userData = event.notification.userdata;
                                  
         if(typeof(userData) != "undefined") {
-        	
+        	window.localStorage["BID"] = userdata.bookid;
+            window.localStorage.setItem("PUSHURL",userdata.pushurl);
             console.warn('user data: ' + JSON.stringify(userData));
             
            
