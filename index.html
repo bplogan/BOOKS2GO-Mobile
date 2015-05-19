@@ -125,6 +125,7 @@ function deviceReady() {
 			        	}else{
 			        		var pushurl = window.localStorage.getItem("PUSHURL");
 			        		window.localStorage.setItem("PUSHURL", null);
+			        		alert("pushurl: " + pushurl);
 			        		window.location = pushurl;       
 			        		      
 			        	}
