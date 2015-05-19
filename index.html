@@ -89,15 +89,18 @@ function deviceReady() {
 	
 	console.log("deviceReady");
 	
-	alert("device ready");
-	var uuid = device.uuid;
-	alert(uuid);
+	
 	var plat = device.platform;	
-	alert(plat);
+	if(plat == "Android"){
+		initPushwoosh_android();
+	}else if(plat == "iPhone" || plat == "iOS"){
+		initPushwoosh_iOS();
+	}
+
 	
 	
 	
-	//initPushwoosh();
+	
 	
 	StatusBar.overlaysWebView(false);
 	
@@ -148,7 +151,7 @@ function GoSearch(RID,SID){
 
 
 
-function initPushwoosh() {
+function initPushwoosh_iOS() {
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
  
     //set push notification callback before we initialize the plugin
@@ -183,6 +186,38 @@ function initPushwoosh() {
      
     //reset badges on app start
     pushNotification.setApplicationIconBadgeNumber(0);
+}
+
+function initPushwoosh_android(){
+	
+
+    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+ 
+    //set push notifications handler
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+        var userData = event.notification.userdata;
+                                 
+        if(typeof(userData) != "undefined") {
+            console.warn('user data: ' + JSON.stringify(userData));
+        }
+                                     
+       
+    });
+ 
+    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
+    pushNotification.onDeviceReady({ projectid: "books2go-app", pw_appid : "49CAB-F6ECD" });
+ 
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
 }
 
 		
