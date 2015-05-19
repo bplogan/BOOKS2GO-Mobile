@@ -119,12 +119,12 @@ function deviceReady() {
 			        data: {'UUID' : deviceToken, 'UID' : UID},
 			        dataType: "json",
 			        success: function(data) {
-			        	var pushurl = window.localStorage.getItem("PUSHURL");
-			        	if(pushurl == undefined || pushurl == null){
+			        	
+			        	if(window.localStorage.getItem("PUSHURL") == undefined || window.localStorage.getItem("PUSHURL") == null){
 			        		window.location = "profile.html"; 
 			        	}else{
+			        		var pushurl = window.localStorage.getItem("PUSHURL");
 			        		window.localStorage.setItem("PUSHURL", null);
-			        		alert(pushurl);
 			        		window.location = pushurl;       
 			        		      
 			        	}
