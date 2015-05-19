@@ -120,15 +120,8 @@ function deviceReady() {
 			        dataType: "json",
 			        success: function(data) {
 			        	
-			        	if(window.localStorage.getItem("PUSHURL") == undefined || window.localStorage.getItem("PUSHURL") == null || window.localStorage.getItem("PUSHURL") == "null" || window.localStorage.getItem("PUSHURL") == "undefined"){
-			        		window.location = "profile.html"; 
-			        	}else{
-			        		var pushurl = window.localStorage.getItem("PUSHURL");
-			        		window.localStorage.setItem("PUSHURL", "profile.html");
-			        		alert("pushurl: " + pushurl);
-			        		window.location = pushurl;       
-			        		      
-			        	}
+			        	window.location = "profile.html"; 
+			        	
 			    		 
 			     	},
 			 	 	error: function(xhr, desc, err) {
@@ -169,7 +162,7 @@ function initPushwoosh_iOS() {
                                 var data = event.notification.userdata;
                                 window.localStorage["BID"] = data.bookid;
                                 window.localStorage.setItem("PUSHURL",data.pushurl);
-                                alert(data.pushurl);
+                               
                                	window.location = data.pushurl;
                                 //display alert to the user for example
                                 //alert(notification.aps.alert + " in our face");
@@ -214,6 +207,7 @@ function initPushwoosh_android(){
         if(typeof(userData) != "undefined") {
         	window.localStorage["BID"] = userdata.bookid;
             window.localStorage.setItem("PUSHURL",userdata.pushurl);
+           	window.location = data.pushurl;
             console.warn('user data: ' + JSON.stringify(userData));
             
            
