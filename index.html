@@ -89,11 +89,15 @@ function deviceReady() {
 	
 	console.log("deviceReady");
 	
+	alert("device ready");
+	var uuid = device.uuid;
+	alert(uuid);
+	var plat = device.platform;	
+	alert(plat);
 	
-	var uuid = device.uuid;	
-	alert(device.platform);
 	
-	//initPushwoosh();
+	
+	initPushwoosh();
 	
 	StatusBar.overlaysWebView(false);
 	
