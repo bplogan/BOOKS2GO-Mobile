@@ -120,12 +120,13 @@ function deviceReady() {
 			        dataType: "json",
 			        success: function(data) {
 			        	var pushurl = window.localStorage.getItem("PUSHURL");
-			        	if(pushurl !== undefined && pushurl !== null){
+			        	if(pushurl == undefined || pushurl == null){
+			        		window.location = "profile.html"; 
+			        	}else{
 			        		window.localStorage.setItem("PUSHURL", null);
 			        		alert(pushurl);
 			        		window.location = pushurl;       
-			        	}else{
-			        		window.location = "profile.html";       
+			        		      
 			        	}
 			    		 
 			     	},
