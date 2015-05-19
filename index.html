@@ -119,8 +119,13 @@ function deviceReady() {
 			        data: {'UUID' : deviceToken, 'UID' : UID},
 			        dataType: "json",
 			        success: function(data) {
-			        	
-			    		window.location = "profile.html";        
+			        	var pushurl = window.localStorage.getItem("PUSHURL");
+			        	if(pushurl !== undefined && pushurl !== null){
+			        		window.location = "book.html";       
+			        	}else{
+			        		window.location = "profile.html";       
+			        	}
+			    		 
 			     	},
 			 	 	error: function(xhr, desc, err) {
 			         alert(xhr);
@@ -158,8 +163,9 @@ function initPushwoosh_iOS() {
                                 //get the notification payload
                                 var notification = event.notification;
                                 var data = event.notification.userdata;
-                                alert("type: " + data.type);
-                                alert("bookid: " + data.bookid);
+                                window.localStorage.setItem("BID",data.bookid);
+                                window.localStorage.setItem("PUSHURL",data.pushurl);
+                              
                                 //display alert to the user for example
                                 alert(notification.aps.alert + " in our face");
                                 
