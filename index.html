@@ -169,7 +169,8 @@ function initPushwoosh_iOS() {
                                 var data = event.notification.userdata;
                                 window.localStorage["BID"] = data.bookid;
                                 window.localStorage.setItem("PUSHURL",data.pushurl);
-                              
+                                alert(data.pushurl);
+                               	window.location = data.pushurl;
                                 //display alert to the user for example
                                 //alert(notification.aps.alert + " in our face");
                                 
