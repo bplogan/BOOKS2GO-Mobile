@@ -86,8 +86,11 @@ function init() {
 function deviceReady() {
 	
 	
-		
+	
 	console.log("deviceReady");
+	
+	initPushwoosh();
+	
 	StatusBar.overlaysWebView(false);
 	
 	
@@ -99,7 +102,7 @@ function deviceReady() {
 				
 			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
-				initPushwoosh();
+				
 				var UID = window.localStorage.getItem("user_id");
 				$.ajax({
 			        type: "POST",
