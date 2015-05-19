@@ -85,7 +85,7 @@ function init() {
 	
 function deviceReady() {
 	
-	alert(window.localStorage.getItem("POOP"));
+	
 	console.log("deviceReady");
 	
 	
@@ -157,7 +157,9 @@ function initPushwoosh_iOS() {
     document.addEventListener('push-notification', function(event) {
                                 //get the notification payload
                                 var notification = event.notification;
- 
+                                var data = event.notification.userdata;
+                                alert("type: " + data.type);
+                                alert("bookid: " + data.bookid);
                                 //display alert to the user for example
                                 alert(notification.aps.alert + " in our face");
                                 
