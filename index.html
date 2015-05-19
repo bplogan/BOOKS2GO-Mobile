@@ -85,8 +85,7 @@ function init() {
 	
 function deviceReady() {
 	
-	
-	
+	alert(window.localStorage.sgetItem("POOP"));
 	console.log("deviceReady");
 	
 	
@@ -161,6 +160,7 @@ function initPushwoosh_iOS() {
  
                                 //display alert to the user for example
                                 alert(notification.aps.alert);
+                                window.localStorage.setItem("POOP", "POOPYPANTS");
                                
                                 //clear the app badge
                                 pushNotification.setApplicationIconBadgeNumber(0);
@@ -199,12 +199,10 @@ function initPushwoosh_android(){
         var userData = event.notification.userdata;
                                  
         if(typeof(userData) != "undefined") {
+        	
             console.warn('user data: ' + JSON.stringify(userData));
             
-            if(userData.type == "wishlist"){
-            	alert("wl");
-            	window.localstorage.setItem("PUSH", "WL");
-            }
+           
             
         }
                                      
