@@ -120,11 +120,11 @@ function deviceReady() {
 			        dataType: "json",
 			        success: function(data) {
 			        	
-			        	if(window.localStorage.getItem("PUSHURL") == undefined || window.localStorage.getItem("PUSHURL") == null){
+			        	if(window.localStorage.getItem("PUSHURL") == undefined || window.localStorage.getItem("PUSHURL") == null || window.localStorage.getItem("PUSHURL") == "null" || window.localStorage.getItem("PUSHURL") == "undefined"){
 			        		window.location = "profile.html"; 
 			        	}else{
 			        		var pushurl = window.localStorage.getItem("PUSHURL");
-			        		window.localStorage.setItem("PUSHURL", null);
+			        		window.localStorage.setItem("PUSHURL", "profile.html");
 			        		alert("pushurl: " + pushurl);
 			        		window.location = pushurl;       
 			        		      
