@@ -97,7 +97,7 @@ function deviceReady() {
 	
 	
 	
-	initPushwoosh();
+	//initPushwoosh();
 	
 	StatusBar.overlaysWebView(false);
 	
@@ -170,7 +170,7 @@ function initPushwoosh() {
     pushNotification.registerDevice(
         function(status) {
              deviceToken = status['deviceToken'];
-            a	lert(deviceToken);
+           
             
             
             console.warn('registerDevice: ' + deviceToken);
