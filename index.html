@@ -67,7 +67,7 @@
 
 
 <script>
-
+var deviceToken;
 function init() {
 		
 	document.addEventListener("deviceready", deviceReady, false);
@@ -95,8 +95,7 @@ function deviceReady() {
 	
 	
 	
-	var uuid = device.uuid;	
-	window.localStorage.setItem("UUID", uuid);
+	
 		
 	setTimeout(function(){ 
 				
@@ -107,7 +106,7 @@ function deviceReady() {
 				$.ajax({
 			        type: "POST",
 			        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-			        data: {'UUID' : uuid, 'UID' : UID},
+			        data: {'UUID' : deviceToken, 'UID' : UID},
 			        dataType: "json",
 			        success: function(data) {
 			        	
@@ -155,7 +154,10 @@ function initPushwoosh() {
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
-            var deviceToken = status['deviceToken'];
+             deviceToken = status['deviceToken'];
+            
+            
+            
             console.warn('registerDevice: ' + deviceToken);
         },
         function(status) {
