@@ -133,6 +133,14 @@ function GoSearch(RID,SID){
 	window.location = "search.html";
 }
 
+
+	var uuid = device.uuid;	
+	alert(device.platform);
+
+
+
+
+
 function initPushwoosh() {
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
  
@@ -155,7 +163,7 @@ function initPushwoosh() {
     pushNotification.registerDevice(
         function(status) {
              deviceToken = status['deviceToken'];
-            
+            a	lert(deviceToken);
             
             
             console.warn('registerDevice: ' + deviceToken);
