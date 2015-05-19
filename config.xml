@@ -42,7 +42,7 @@
     -->
    
       
-    <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
+   	<gap:plugin name="com.pushwoosh.plugins.pushwoosh" source="plugins.cordova.io" />
 	<gap:plugin name="org.apache.cordova.statusbar"  />
     <gap:plugin name="org.apache.cordova.network-information"  />
     <gap:plugin name="org.apache.cordova.device"  />
@@ -101,6 +101,7 @@
         Otherwise, you can specify specific domains:
     -->
     <access origin="*"/>
+    <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
     
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/

@@ -90,14 +90,7 @@ function deviceReady() {
 	console.log("deviceReady");
 	StatusBar.overlaysWebView(false);
 	
-	PushbotsPlugin.debug(true);
-	if(PushbotsPlugin.isiOS()){
-		
-		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
-	}
-	if(PushbotsPlugin.isAndroid()){
-		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
-	}
+	
 	
 	var uuid = device.uuid;	
 	window.localStorage.setItem("UUID", uuid);
@@ -106,7 +99,7 @@ function deviceReady() {
 				
 			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		
-				
+				initPushwoosh();
 				var UID = window.localStorage.getItem("user_id");
 				$.ajax({
 			        type: "POST",
@@ -114,7 +107,7 @@ function deviceReady() {
 			        data: {'UUID' : uuid, 'UID' : UID},
 			        dataType: "json",
 			        success: function(data) {
-			        	PushbotsPlugin.setAlias(uuid); 
+			        	
 			    		window.location = "profile.html";        
 			     	},
 			 	 	error: function(xhr, desc, err) {
@@ -138,7 +131,39 @@ function GoSearch(RID,SID){
 	window.location = "search.html";
 }
 
-
+function initPushwoosh() {
+    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+ 
+    //set push notification callback before we initialize the plugin
+    document.addEventListener('push-notification', function(event) {
+                                //get the notification payload
+                                var notification = event.notification;
+ 
+                                //display alert to the user for example
+                                alert(notification.aps.alert);
+                               
+                                //clear the app badge
+                                pushNotification.setApplicationIconBadgeNumber(0);
+                            });
+ 
+    //initialize the plugin
+    pushNotification.onDeviceReady({pw_appid:"PUSHWOOSH_APP_ID"});
+     
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var deviceToken = status['deviceToken'];
+            console.warn('registerDevice: ' + deviceToken);
+        },
+        function(status) {
+            console.warn('failed to register : ' + JSON.stringify(status));
+            alert(JSON.stringify(['failed to register ', status]));
+        }
+    );
+     
+    //reset badges on app start
+    pushNotification.setApplicationIconBadgeNumber(0);
+}
 
 		
 		
