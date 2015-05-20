@@ -40,9 +40,9 @@
 		<div id="welcome" class="title"></div>
 		<div class="text">
 			<a data-ajax="false" href="mybooks.html" data-role="button" data-icon="books">My Books</a>	
-			<a data-ajax="false" href="postbook.html" data-role="button" data-icon="plus">Post a Book</a>
+			<a data-ajax="false" href="postbook.html" data-role="button" data-icon="plus">Post a Textbook</a>
 			
-			<a data-ajax="false" href="inbox.html" data-role="button" data-icon="mail">Inbox &nbsp;<span class="inbox-count" style='padding:1px'  ></span></a>
+			<a data-ajax="false" href="inbox.html" data-role="button" data-icon="mail">Inbox &nbsp;<span class="inbox-count" style='padding:1px;display:none;text-shadow:none'  ></span></a>
 			<a data-ajax="false" href="wishlist.html" data-role="button" data-icon="star">Wish list</a>
 			<a data-ajax="false" href="editprofile.html" data-role="button" data-icon="user">Edit Profile</a>
 			<a data-ajax="false" href="editschools.html" data-role="button" data-icon="home">Edit Schools</a>
@@ -81,14 +81,14 @@
 $(document).on("pagebeforeshow","#profilePage",function(){ // When entering pagetwo
 	
 	$("#welcome").html(window.localStorage.getItem("username"));
-	if(window.localStorage.getItem("user_id")){
+	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		if(window.localStorage.getItem("user_id") > 0){
 			$("#anon-foot").hide();
 			$("#user-foot").show();
 			$("#uprofile").show();
 			$("#logout").show();
 			$("#login").hide();
-			
+			GetInboxCount();
 		}
 	}else{
 		$("#logout").hide();
@@ -96,7 +96,7 @@ $(document).on("pagebeforeshow","#profilePage",function(){ // When entering page
 		
 	}
 	
-	GetInboxCount();
+	
 	
 });
 
