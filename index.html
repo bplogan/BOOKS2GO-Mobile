@@ -223,8 +223,8 @@ function initPushwoosh_android(){
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
-            var pushToken = status;
-            console.warn('push token: ' + pushToken);
+            deviceToken = status;
+            console.warn('push token: ' + deviceToken);
         },
         function(status) {
             console.warn(JSON.stringify(['failed to register ', status]));
