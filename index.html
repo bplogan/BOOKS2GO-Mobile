@@ -85,7 +85,7 @@ function init() {
 
 function SetToken(uuid,uid){
 	
-		
+				alert("Set Token: " + uuid + "," + uid);
 				
 				$.ajax({
 			        type: "POST",
@@ -109,40 +109,23 @@ function SetToken(uuid,uid){
 
 	
 function deviceReady() {
-	
-	
+		
 	console.log("deviceReady");
-	
-	
+		
 	var plat = device.platform;	
 	if(plat == "iPhone" || plat == "iOS"){
 		initPushwoosh_iOS();
 	}else{
 		initPushwoosh_android();
 	}
-
-	
-	
-	
-	
-	
+		
 	StatusBar.overlaysWebView(false);
 	
-	
-	
-	
-		
-	
-			
-			if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
-		
-				window.location = "profile.html"; 
-			        	
-			    		 
-			     	
-			}else{
-				window.location = "main.html";
-			}
+	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
+		window.location = "profile.html"; 
+	}else{
+		window.location = "main.html";
+	}
 		
 	
 }
@@ -208,37 +191,28 @@ function initPushwoosh_iOS() {
 
 function initPushwoosh_android(){
 	
-
-    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
- 
-    //set push notifications handler
+	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
     document.addEventListener('push-notification', function(event) {
         var title = event.notification.title;
         var userData = event.notification.userdata;
-                                 
+                                
         if(typeof(userData) != "undefined") {
         	window.localStorage["BID"] = userData.bookid;
             window.localStorage.setItem("PUSHURL",userData.pushurl);
            	window.location = userData.pushurl;
             console.warn('user data: ' + JSON.stringify(userData));
-            
-           
-            
-        }
-                                     
-       
+         }
     });
  
-    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-    pushNotification.onDeviceReady({ projectid: "758601829939", pw_appid : "49CAB-F6ECD" });
- 
-    //register for pushes
+	pushNotification.onDeviceReady({ projectid: "758601829939", pw_appid : "49CAB-F6ECD" });
     pushNotification.registerDevice(
         function(status) {
             deviceToken = status;
+            alert("registered");
             if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null && window.localStorage.getItem("user_id") !== "undefined" && window.localStorage.getItem("user_id") !== "null"){
-            		SetToken(deviceToken,window.localStorage.getItem("user_id"));
-            	}
+            	alert("setting token");
+            	SetToken(deviceToken,window.localStorage.getItem("user_id"));
+            }
             console.warn('push token: ' + deviceToken);
         },
         function(status) {
