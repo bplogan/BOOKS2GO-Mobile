@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -13,7 +13,7 @@
 	
 
 
-	</script>
+	</script> 
 	<script id="panel-init">
 		$(function() {
 			$( "body>[data-role='panel']" ).panel();
@@ -96,7 +96,7 @@
 	  <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
 		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
 		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
-		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' ></span></a>
+		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' style="display:none" ></span></a>
    </div>
     <div id="anon-foot" style="display:none">
     	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
@@ -138,21 +138,6 @@
 
 $(document).on("pagebeforeshow","#searchPage",function(){ // When entering pagetwo
 
-	GetRegions();
-	SetSearch();
-		
-		
-		$("#ddl-region").change(function () {
-			GetSchools($("#ddl-region").val());
-		});
-		
-		
-		
-		
-	});
-$(document).on("pageshow","#searchPage",function(){
-	
-	$.mobile.defaultHomeScroll = 0;
 	
 	if(window.localStorage.getItem("user_id")){
 		if(window.localStorage.getItem("user_id") > 0){
@@ -161,6 +146,7 @@ $(document).on("pageshow","#searchPage",function(){
 			$("#uprofile").show();
 			$("#logout").show();
 			$("#login").hide();
+			GetInboxCount();
 		}
 	}else{
 		$("#logout").hide();
@@ -169,25 +155,41 @@ $(document).on("pageshow","#searchPage",function(){
 		$("#user-foot").hide();
 	}
 	
-	
-		var SBID =  window.localStorage.getItem("SBID");
-		if(SBID > 0){
-			if($('#bk' + SBID).length > 0){
-			$('html, body').animate({
-			    scrollTop: $('#bk' + SBID).offset().top - 50
-			  });
+	GetRegions();
+	SetSearch();
+		
+		
+	$("#ddl-region").change(function () {
+		GetSchools($("#ddl-region").val());
+	});
+		
+	$.mobile.defaultHomeScroll = 0;
+		
+		
+		
+		
+			var SBID =  window.localStorage.getItem("SBID");
+			if(SBID > 0){
+				if($('#bk' + SBID).length > 0){
+				$('html, body').animate({
+				    scrollTop: $('#bk' + SBID).offset().top - 50
+				  });
+				}
+				window.localStorage.setItem("SBID", "0");
 			}
-			window.localStorage.setItem("SBID", "0");
-		}
-	
-		GetInboxCount();
-});
+		
+			
+		
+		
+		
+		
+	});
 
 
 
 
 function GetRecentBooks(SID){
-	
+	if(SID > 0){
 	$.ajax({
         type: "POST",
         url: "http://www.books2go.ca/mobiservice/get_recentbooks.php",
@@ -203,9 +205,10 @@ function GetRecentBooks(SID){
      	},
  	 	error: function(xhr, desc, err) {
          alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+         alert("GetRecent: " + desc + "\nError:" + err);
        }
-	   });         
+	   });      
+	}
 }
 
 function GetRegions(){
@@ -223,7 +226,7 @@ function GetRegions(){
      	},
  	 	error: function(xhr, desc, err) {
          alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+         alert("GetRegions: " + desc + "\nError:" + err);
        }
 	   });         
 	}
@@ -240,7 +243,7 @@ function ShowResults(){
 }
 		
 function GetSchools(RID){
-		
+	$("#err").hide();
 		if(RID > 0){
 	   	$.ajax({
 	        type: "POST",
@@ -258,7 +261,7 @@ function GetSchools(RID){
 	     	},
 	 	 	error: function(xhr, desc, err) {
 	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	         alert("GetSchools: " + desc + "\nError:" + err);
 	       }
 	   });         	
 	}else{
@@ -268,13 +271,13 @@ function GetSchools(RID){
 	}
 	
 	function SetSearch(){
-		
+		var SRCH = "";
 		var TXT = window.localStorage.getItem("search-text");
 		var RID = window.localStorage.getItem("search-region");
 		var SID = window.localStorage.getItem("search-school");
 		
-		if(window.localStorage.getItem("search-data")){
-		var SRCH = JSON.parse(window.localStorage.getItem("search-data"));
+		if(window.localStorage.getItem("search-data") !== undefined && window.localStorage.getItem("search-data") !== null){
+			SRCH = JSON.parse(window.localStorage.getItem("search-data"));
 		}
 		
 		if(RID == null || RID == undefined || RID == ""){
@@ -307,10 +310,6 @@ function GetSchools(RID){
 			
 		}		
 		
-		if(SRCH){
-			
-			
-		}
 		
 		if(RID > 0){
 			$('#ddl-region').val(RID).selectmenu('refresh');
@@ -334,6 +333,9 @@ function GetSchools(RID){
 	}
 		
 	function Search(s,page){
+		
+		$("#btn-search").html("Searching...");
+		
 		$("#err").hide();
 		$("#searchlocation").html($("#ddl-school").find(":selected").text());
 		var UID = 0;
@@ -348,13 +350,14 @@ function GetSchools(RID){
 		}
 			
 	
-		window.localStorage.setItem("search-text", TXT);
+		window.localStorage.setItem("search-text", TXT.trim());
 		window.localStorage.setItem("search-region", RID);
 		window.localStorage.setItem("search-school", SID);
 		
 		if(RID >= 0){
-			if( (TXT !== "" && SID >= 0) || (TXT !== "" && RID >= 0) ){
-				$("#btn-search").html("Searching...");
+			if(TXT.trim() !== ""){
+			if( (SID >= 0) || (RID >= 0) ){
+				
 				
 				
 				
@@ -412,14 +415,23 @@ function GetSchools(RID){
 			     	},
 			 	 	error: function(xhr, desc, err) {
 			         alert(xhr);
-			         alert("Details: " + desc + "\nError:" + err);
+			         alert("Search: " + desc + "\nError:" + err);
 			       }
 			   });  
 			}else{
+				$("#err").html("Please select a Region");
 				$("#err").show();
+				$("#btn-search").html("Search");
+			}
+		}else{
+			$("#err").html("Please enter search text");
+			$("#err").show();
+			$("#btn-search").html("Search");
 			}
 	   }else{
-	   		$("#err").show();
+		   $("#err").html("Please select a Region");
+			$("#err").show();
+			$("#btn-search").html("Search");
 	   }       		
 	}
 		
@@ -497,6 +509,10 @@ function GetSchools(RID){
 		$("#a" + page).html("Loading...");
 	}
 	
+	function GoISBN(isbn){
+		$("#txt-search").val(isbn);
+		Search('',1);
+	}
 	
 	</script>
 
