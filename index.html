@@ -111,15 +111,21 @@ function SetToken(uuid,uid){
 function deviceReady() {
 		
 	console.log("deviceReady");
+	
+	alert("device ready");
 		
 	var plat = device.platform;	
 	if(plat == "iPhone" || plat == "iOS"){
+		alert("registering ios");
 		initPushwoosh_iOS();
 	}else{
+		alert("register android");
 		initPushwoosh_android();
 	}
 		
 	StatusBar.overlaysWebView(false);
+	
+	alert("wtf");
 	
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		window.location = "profile.html"; 
