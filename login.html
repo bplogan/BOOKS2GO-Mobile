@@ -51,7 +51,7 @@
 			
 			<fieldset>
 				 <p id="err" class="err" style="display:none">All fieds are required.</p>
-				 <button id="btn-login" type="submit" data-icon="user" >Login</button>
+				 <button id="btn-login" type="submit" data-icon="user" style="background-color: #BCED91">Login</button>
 			</fieldset>
 			
 			</form>					
@@ -118,6 +118,7 @@ function Login(){
 	
 	var email = $("#txt-email").val();
 	var pass = $("#txt-password").val();	var uuid = window.localStorage.getItem("UUID");
+	if(email.trim() !== "" && pass.trim() !== ""){
 	$.ajax({
         type: "POST",
         url: "http://www.books2go.ca/mobiservice/login.php",
@@ -125,7 +126,7 @@ function Login(){
         dataType: "json",
         success: function(data) {
         				
-        	if(data.error == ''){				window.localStorage.setItem("user_id", data.user_id);	        	window.localStorage.setItem("username", data.username);		        	window.localStorage.setItem("email", data.email);		        	window.localStorage.setItem("school", data.school);		        	window.localStorage.setItem("schoolName", data.schoolName);		        	window.localStorage.setItem("schoolFullName", data.schoolFullName);		        	window.localStorage.setItem("loggedIn", data.loggedIn);		        	window.localStorage.setItem("region", data.region);		        	window.localStorage.setItem("subregion", data.subregion);		        	window.localStorage.setItem("SEC", data.SEC);        		        		        		window.location = "index.html";        		
+				window.localStorage.setItem("user_id", data.user_id);	        	window.localStorage.setItem("username", data.username);		        	window.localStorage.setItem("email", data.email);		        	window.localStorage.setItem("school", data.school);		        	window.localStorage.setItem("schoolName", data.schoolName);		        	window.localStorage.setItem("schoolFullName", data.schoolFullName);		        	window.localStorage.setItem("loggedIn", data.loggedIn);		        	window.localStorage.setItem("region", data.region);		        	window.localStorage.setItem("subregion", data.subregion);		        	window.localStorage.setItem("SEC", data.SEC);        	if(data.error == ''){        		        		window.location = "profile.html";        		
         	}else{
         		alert("error");
         		showErrorMessage(data.error, $("#err"), 0);
@@ -137,8 +138,10 @@ function Login(){
          alert("Details: " + desc + "\nError:" + err);
        }
    });  
+	}else{
+		showErrorMessage("Please enter your email and password", $("#err"), 0);
 }
-
+} 
 $('#frm-login').submit(function (e) {
     e.preventDefault();
     Login();
