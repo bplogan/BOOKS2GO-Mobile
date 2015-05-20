@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -43,7 +43,7 @@
 		
 			<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
 			
-			<div class="title">Register @ books2go</div>	
+			<div class="title">Create a free account</div>	
 			<div class="text" id="search">
 				<div id="editdiv">					
 						
@@ -53,32 +53,32 @@
 												
 						<fieldset>
 							<label for="txt-fname">First name</label>
-							<input type="text" id="txt-fname" required />
+							<input type="text" id="txt-fname" required="required" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-lname">Last name</label>
-							<input type="text" id="txt-lname" required />
+							<input type="text" id="txt-lname" required="required" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-displayname">Display name</label>
-							<input type="text" id="txt-displayname" required  />
+							<input type="text" id="txt-displayname" required="required"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-email">Email</label>
-							<input type="email" id="txt-email" required />
+							<input type="email" id="txt-email" required="required" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-password">Password</label>
-							<input type="password" id="txt-password" required  />
+							<input type="password" id="txt-password" required="required" minlength="4"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-verify">Retype</label>
-							<input type="password" id="txt-verify" required  />
+							<input type="password" id="txt-verify" required="required" minlength="4"  />
 						</fieldset>
 						
 						<fieldset>
@@ -93,7 +93,7 @@
 						
 						<fieldset>
 							 <div id="err"></div> 
-							 <button id="btn-search" type="submit" data-icon="check" >Register</button>
+							 <button id="btn-search" type="submit" data-icon="check" style="background-color: #BCED91">Register</button>
 						</fieldset>
 					</form>
 				
@@ -202,6 +202,10 @@ function Register(){
 		bGO = false;
 		msg = "Please select a school";
 	}
+	if(pass.trim() == "" || verify.trim() == ""){
+		bGO = false;
+		msg = "Please enter a passsword";
+	}
 	if(pass !== verify){
 		bGO = false;
 		msg = "Passwords do not match";
@@ -216,7 +220,7 @@ function Register(){
         success: function(data) {
         	if(data.error == ""){
         		
-        		window.localStorage.setItem("user_id", data.user_id);
+        		window.localStorage.setItem("user_id", data.userid);
             	window.localStorage.setItem("username", data.username);
             	window.localStorage.setItem("email", data.email);
             	window.localStorage.setItem("school", data.school);
