@@ -90,10 +90,10 @@ function deviceReady() {
 	
 	
 	var plat = device.platform;	
-	if(plat == "Android"){
-		initPushwoosh_android();
-	}else if(plat == "iPhone" || plat == "iOS"){
+	if(plat == "iPhone" || plat == "iOS"){
 		initPushwoosh_iOS();
+	}else{
+		initPushwoosh_android();
 	}
 
 	
@@ -205,9 +205,9 @@ function initPushwoosh_android(){
         var userData = event.notification.userdata;
                                  
         if(typeof(userData) != "undefined") {
-        	window.localStorage["BID"] = userdata.bookid;
-            window.localStorage.setItem("PUSHURL",userdata.pushurl);
-           	window.location = data.pushurl;
+        	window.localStorage["BID"] = userData.bookid;
+            window.localStorage.setItem("PUSHURL",userData.pushurl);
+           	window.location = userData.pushurl;
             console.warn('user data: ' + JSON.stringify(userData));
             
            
