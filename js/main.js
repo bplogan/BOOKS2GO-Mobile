@@ -1,3 +1,20 @@
+function GetTotals(){
+		$(".sub-item").hide();
+	   	$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/common.php?booktotals=1",
+	        data: {},
+	        dataType: "json",
+	        success: function(data) {
+	        	
+		       
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert("Get Totals");
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+	}
 
 function GoHome(){
 	if(window.localStorage.getItem("user_id")){
@@ -55,7 +72,9 @@ function GetInboxCount(){
 	       success: function(data) {
 	    	  
 	    	    if(data.count > 0){
+	    	    	
 	    	    	$(".inbox-count").html(data.count);
+	    	    	$(".inbox-count").show();
 	    	    }else{
 	    			$(".inbox-count").hide();
 	    		}
