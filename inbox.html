@@ -1,0 +1,186 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>books2go</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	
+	
+
+
+	</script>
+	<script id="panel-init">
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+		});
+	</script>
+	
+	
+</head>
+
+<body >
+
+<div id="inboxPage" data-role="page" data-ajax="false" >
+	<div data-role="header" data-position="fixed" data-theme="a" id="header">
+      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+    		
+    		
+        </div>
+      
+        
+    
+ </div><!-- header -->
+	
+	
+	<div data-role="content" id="content">
+		<div>
+			<p class='logop' id="logo"><img class='logo' src="images/logo3.png" alt="" /></p>
+			
+				
+				<select id="ddl-inbox" onchange="GetInbox(this.value)"><option value="0">Received Messages</option><option value="1">Sent  Messages</option></select>
+				<div class="title" id="counts"><span id="newtext"><span id="new"></span> new messages and </span><span id="total"></span> total messages</div>
+				<div style="height:15px"></div>
+				
+				<ul id="inbox-list"  data-role="listview" data-filter="false" data-inset="false" data-theme="a" ></ul>
+				<p id="inbox-msg"></p>
+
+	   </div>
+	
+	</div>
+	
+         
+<div data-role="popup" id="pop" data-overlay-theme="a" data-theme="a" data-dismissible="true" style="max-width:400px;font-size:12px">
+	<p id="err"></p>
+</div>
+
+
+
+   <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
+	<div id="user-foot">
+	 <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
+		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
+		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' style="display:none" ></span></a>
+   </div>
+    <div id="anon-foot" style="display:none">
+    	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
+    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
+    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Search</a>
+		
+    </div>
+  </div>
+
+<div data-role="panel" id="mypanel" data-theme="a" style='padding:0;margin:0;'>
+	<img src="images/logo3.png" width="100%" />
+   <div style="height:30px"></div>
+   <ul data-role="listview" id="menu">
+   <li><a href="javascript:GoHome()" data-rel="close" data-ajax="false">Home</a></li>
+
+  <li><a href="search.html" data-rel="close" data-ajax="false">Search</a></li>
+  <li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">
+    <h2>Profile</h2>
+    <ul data-role="listview" data-theme="a">
+      <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
+      <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
+      <li><a href="inbox.html" data-rel="close" data-ajax="false">&nbsp; - Inbox</a></li>
+      <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
+      <li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>
+      <li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>
+      <li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>
+    </ul>
+  </li>
+  <li style="display:none" id="logout"><a href="logout.html" data-rel="user" data-ajax="false">Log out</a></li>
+  <li style="display:none" id="login"><a href="login.html" data-rel="user" data-ajax="false">Log In</a></li>
+  
+</ul>
+</div><!-- /panel -->
+
+
+<script>
+
+
+
+
+		$('#inboxPage').bind('pageshow', function() {
+			var sent = window.localStorage.getItem("SENT");
+			if(sent > 0){
+				GetInbox(1);
+			}else{
+				GetInbox(0);
+			}
+			if(window.localStorage.getItem("user_id")){
+				if(window.localStorage.getItem("user_id") > 0){
+					$("#anon-foot").hide();
+					$("#user-foot").show();
+					$("#uprofile").show();
+					$("#logout").show();
+					$("#login").hide();
+				}
+			}else{
+				$("#logout").hide();
+				$("#login").show();
+				$("#anon-foot").show();
+				$("#user-foot").hide();
+			}
+			
+			GetInboxCount();
+		});
+		
+	function GetInbox(sent){
+		var UID = window.localStorage.getItem("user_id");
+		
+		$.ajax({
+	       type: "POST",
+	       url: "http://www.books2go.ca/mobiservice/get_inbox.php",
+	       data: {'UID' : UID, 'SENT' : sent},
+	       dataType: "json",
+	       success: function(data) {
+	    		if(data.count > 0){	
+	    			$("#total").html(data.totalcount);
+	    			$("#new").html(data.newcount);
+	        		$('#inbox-list').empty().append(data.result);
+	        		$('#inbox-list').listview('refresh');
+	        		$("#counts").show();
+	        		if(sent > 0){
+	        			$("#newtext").hide();
+	        		}else{
+	        			$("#newtext").show();
+	        		}
+	    		}else{
+	    			$("#inbox-msg").html("You currently have no messages");
+	    			$("#counts").hide();
+	    		}
+	        			
+	        	
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   });         		
+	}
+	
+	function GetMessage(id){
+		window.localStorage.setItem("MID",id);
+		window.localStorage.setItem("SENT", $("#ddl-inbox").val());
+		window.location = "message.html";
+	}
+	
+	
+	</script>
+
+</div><!-- /page -->
+
+
+
+
+
+
+</body>
+</html>
