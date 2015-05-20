@@ -51,7 +51,7 @@
 			</div>
 			
 			<button onclick="ShowContact()" id="btnContact" type="button" data-icon="mail" data-iconpos="left" style="background-color: #BCED91">Contact Seller</button>
-			<p style="text-align:center;display:none" id="contacted" class="div-contacted">(<img src="../books/images/check.png" /> You have already contacted this seller)</p> 
+			<p style="text-align:center;display:none" id="contacted" class="div-contacted">(<img src="http://www.books2go.ca/books/images/check.png" /> You have already contacted this seller)</p> 
 			
 			<div id="contact" style="display:none"> 
 				<b>Contact Seller</b>
@@ -202,7 +202,7 @@
 		var UID = window.localStorage["user_id"];
 		var MSG = $("#txt-message").val();
 		var EMAIL = $("#txt-email").val();
-		alert(BID + ',' + UID + ',' + MSG + ',' + EMAIL);
+		
 		if(EMAIL.trim() !== ""){
 		
 			$.ajax({
@@ -211,7 +211,7 @@
 	        data: {'BID' : BID, 'UID' : UID, 'MSG' : MSG, 'EMAIL' : EMAIL},
 	        dataType: "json",
 	        success: function(data) {
-	        	alert(data.push);
+	        	
 	    		if(data.error == ''){
 	    			 showErrorMessage(data.success, $("#err"), 0);
 	    			 ShowBook();

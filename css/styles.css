@@ -124,4 +124,8 @@ optgroup {
   margin: -100px 0 0 -100px;
 }
 
+.ui-li-count{
+	text-shadow:none !important;
+}
+
 
