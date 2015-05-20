@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -41,9 +41,9 @@
 		
 		<p class='logop'><img class='logo' src="images/logo3.png" alt="" /></p>
 		<div class='title'>My Books </div>
-		<select id="ddl-mybooks" onchange="ToggleSold()"><option value="0">View my books for sale</option><option value="1">View my sold books</option></select>
+		<select id="ddl-mybooks" onchange="ToggleSold()"><option value="0">Posted Books</option><option value="1">Sold Books</option></select>
 	<div>	
-	<a data-role="button" data-ajax="false" data-iconpos="left" data-icon="plus" href="postbook.html" style="background-color: #BCED91">Post a textbook</a>
+	<button type="button" data-icon="plus" style="background-color: #BCED91" onclick="javascript:GoToPostBook()">Post a textbook</button>
 	<div id="mybooks"></div>
 	</div>
 	</div>
@@ -58,7 +58,7 @@
 	 <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
 		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
 		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
-		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' ></span></a>
+		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' style="display:none" ></span></a>
    </div>
     <div id="anon-foot" style="display:none">
     	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
@@ -128,7 +128,7 @@ $(document).on("pagebeforeshow","#myBooksPage",function(){ // When entering page
 	function DisplayMyBooks(msg){
 		
 		var UID = window.localStorage.getItem("user_id");
-		
+			
 			$.ajax({
 	        type: "POST",
 	        url: "http://www.books2go.ca/mobiservice/get_mybooks.php",
@@ -136,6 +136,7 @@ $(document).on("pagebeforeshow","#myBooksPage",function(){ // When entering page
 	        data: {'UID' : UID},
 	        dataType: "json",
 	        success: function(data) {
+	        	
 	        	if(data.bookcount > 0){
 		    		$("#mybooks").html(data.result);   
 		    		$( ".faak" ).selectmenu();
@@ -198,7 +199,9 @@ $(document).on("pagebeforeshow","#myBooksPage",function(){ // When entering page
 	   });         		
 	}
 	
-	
+	function GoToPostBook(){
+		window.location = "postbook.html";
+	}
 	function DeleteBook(BID){
 		if (confirm("Are you sure you want to delete this book?")) {
 			var UID = window.localStorage.getItem("user_id");
