@@ -211,6 +211,7 @@
 	        data: {'BID' : BID, 'UID' : UID, 'MSG' : MSG, 'EMAIL' : EMAIL},
 	        dataType: "json",
 	        success: function(data) {
+	        	alert(data.push);
 	    		if(data.error == ''){
 	    			 showErrorMessage(data.success, $("#err"), 0);
 	    			 ShowBook();
