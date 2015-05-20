@@ -118,7 +118,7 @@ function deviceReady() {
 	if(plat == "iPhone" || plat == "iOS"){
 		initPushwoosh_iOS();
 	}else{
-		//initPushwoosh_android();
+		initPushwoosh_android();
 	}
 
 	
@@ -191,7 +191,7 @@ function initPushwoosh_iOS() {
              deviceToken = status['deviceToken'];
            	 
             	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null && window.localStorage.getItem("user_id") !== "undefined" && window.localStorage.getItem("user_id") !== "null"){
-            		SetToken(deviceToken,window.localStorage.getItem("user_id")){
+            		SetToken(deviceToken,window.localStorage.getItem("user_id"));
             	}
             
             console.warn('registerDevice: ' + deviceToken);
