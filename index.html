@@ -67,7 +67,7 @@
 
 
 <script>
-var deviceToken;
+
 function init() {
 		
 	document.addEventListener("deviceready", deviceReady, false);
@@ -85,34 +85,35 @@ function init() {
 
 function SetToken(uuid,uid){
 	
-				alert("Set Token: " + uuid + "," + uid);
-				
-				$.ajax({
-			        type: "POST",
-			        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-			        data: {'UUID' : uuid, 'UID' : uid},
-			        dataType: "json",
-			        success: function(data) {
-			        	
-			        	
-			        	
-			    		 
-			     	},
-			 	 	error: function(xhr, desc, err) {
-			         alert(xhr);
-			         alert("Details: " + desc + "\nError:" + err);
-			       }
-			   });         		
-			
-			
+	alert("Set Token: " + uuid + "," + uid);
+	
+	if(uid > 0){
+		$.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+	        async: false,
+	        data: {'UUID' : uuid, 'UID' : uid},
+	        dataType: "json",
+	        success: function(data) {
+	        	window.location = "profile.html";	 
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
+	       }
+	   	});         		
+	}else{
+		window.location = "main.html";
+	}		
+		
 }
 
 	
 function deviceReady() {
 		
 	console.log("deviceReady");
+	StatusBar.overlaysWebView(false);
 	
-	alert("device ready");
 		
 	var plat = device.platform;	
 	if(plat == "iPhone" || plat == "iOS"){
@@ -122,17 +123,7 @@ function deviceReady() {
 		alert("register android");
 		initPushwoosh_android();
 	}
-		
-	StatusBar.overlaysWebView(false);
-	
-	alert("wtf");
-	
-	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
-		window.location = "profile.html"; 
-	}else{
-		window.location = "main.html";
-	}
-		
+			
 	
 }
 
@@ -153,23 +144,22 @@ function GoSearch(RID,SID){
 
 function initPushwoosh_iOS() {
     var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
- 
+ 	var uid = window.localStorage.getItem("user_id"); 
     //set push notification callback before we initialize the plugin
     document.addEventListener('push-notification', function(event) {
-                                //get the notification payload
-                                var notification = event.notification;
-                                var data = event.notification.userdata;
-                                window.localStorage["BID"] = data.bookid;
-                                window.localStorage.setItem("PUSHURL",data.pushurl);
-                               
-                               	window.location = data.pushurl;
-                                //display alert to the user for example
-                                //alert(notification.aps.alert + " in our face");
-                                
-                               
-                                //clear the app badge
-                                pushNotification.setApplicationIconBadgeNumber(0);
-                            });
+        //get the notification payload
+        var notification = event.notification;
+        var data = event.notification.userdata;
+        window.localStorage["BID"] = data.bookid;
+        window.localStorage.setItem("PUSHURL",data.pushurl);
+       
+       	window.location = data.pushurl;
+       
+        
+       
+        //clear the app badge
+        pushNotification.setApplicationIconBadgeNumber(0);
+    });
  
     //initialize the plugin
     pushNotification.onDeviceReady({pw_appid:"49CAB-F6ECD"});
@@ -177,13 +167,9 @@ function initPushwoosh_iOS() {
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
-             deviceToken = status['deviceToken'];
-           	 
-            	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null && window.localStorage.getItem("user_id") !== "undefined" && window.localStorage.getItem("user_id") !== "null"){
-            		SetToken(deviceToken,window.localStorage.getItem("user_id"));
-            	}
-            
-            console.warn('registerDevice: ' + deviceToken);
+            var deviceToken = status['deviceToken'];
+           	SetToken(deviceToken,uid);
+         	console.warn('registerDevice: ' + deviceToken);
         },
         function(status) {
             console.warn('failed to register : ' + JSON.stringify(status));
@@ -196,7 +182,7 @@ function initPushwoosh_iOS() {
 }
 
 function initPushwoosh_android(){
-	
+	var uid = window.localStorage.getItem("user_id"); 
 	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
     document.addEventListener('push-notification', function(event) {
         var title = event.notification.title;
@@ -213,12 +199,9 @@ function initPushwoosh_android(){
 	pushNotification.onDeviceReady({ projectid: "758601829939", pw_appid : "49CAB-F6ECD" });
     pushNotification.registerDevice(
         function(status) {
-            deviceToken = status;
-            alert("registered");
-            if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null && window.localStorage.getItem("user_id") !== "undefined" && window.localStorage.getItem("user_id") !== "null"){
-            	alert("setting token");
-            	SetToken(deviceToken,window.localStorage.getItem("user_id"));
-            }
+            var deviceToken = status;
+            SetToken(deviceToken,uid);
+           
             console.warn('push token: ' + deviceToken);
         },
         function(status) {
