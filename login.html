@@ -125,10 +125,10 @@ function Login(){
         data: {'EMAIL' : email, 'PASS' : pass, 'UUID' : uuid},
         dataType: "json",
         success: function(data) {
-        				
-				window.localStorage.setItem("user_id", data.user_id);	        	window.localStorage.setItem("username", data.username);		        	window.localStorage.setItem("email", data.email);		        	window.localStorage.setItem("school", data.school);		        	window.localStorage.setItem("schoolName", data.schoolName);		        	window.localStorage.setItem("schoolFullName", data.schoolFullName);		        	window.localStorage.setItem("loggedIn", data.loggedIn);		        	window.localStorage.setItem("region", data.region);		        	window.localStorage.setItem("subregion", data.subregion);		        	window.localStorage.setItem("SEC", data.SEC);        	if(data.error == ''){        		        		window.location = "profile.html";        		
+        					
+				window.localStorage.setItem("user_id", data.userid);	        	window.localStorage.setItem("username", data.username);		        	window.localStorage.setItem("email", data.email);		        	window.localStorage.setItem("school", data.school);		        	window.localStorage.setItem("schoolName", data.schoolName);		        	window.localStorage.setItem("schoolFullName", data.schoolFullName);		        	window.localStorage.setItem("loggedIn", data.loggedIn);		        	window.localStorage.setItem("region", data.region);		        	window.localStorage.setItem("subregion", data.subregion);		        	window.localStorage.setItem("SEC", data.SEC);        	if(data.error == ''){        		        		window.location = "index.html";        		
         	}else{
-        		alert("error");
+        		
         		showErrorMessage(data.error, $("#err"), 0);
         	}
         	
