@@ -203,7 +203,7 @@
 		        	
 		     	},
 		     	error: function(xhr, desc, err) {
-		        	showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+		        	showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 		       }
 			})
 					}
@@ -231,7 +231,7 @@
 		        	
 		     	},
 		     	error: function(xhr, desc, err) {
-		        	showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+		        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 		       }
 			})
 					}
@@ -295,7 +295,7 @@
 			        	window.location = "mybooks.html";
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+			      showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 			       }
 			   });         		
 			}else{
@@ -357,7 +357,7 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });         		
 	}

@@ -255,7 +255,7 @@ function UpdateBook(){
         	}, 3000);
         },
  	 	error: function(xhr, desc, err) {
-        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
    });         		
 	
@@ -291,7 +291,7 @@ function GetBookInfo(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
    });         		
 }

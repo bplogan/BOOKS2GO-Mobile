@@ -156,8 +156,7 @@
 			        	
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         alert(xhr);
-			         alert("Details: " + desc + "\nError:" + err);
+			      showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 			       }
 			   });        
 		}
@@ -179,8 +178,7 @@
 			    	   showErrorMessage("Your reply has been sent!", $("#err"), 0);
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         alert(xhr);
-			         alert("Details: " + desc + "\nError:" + err);
+			       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 			       }
 			   });        
 		}

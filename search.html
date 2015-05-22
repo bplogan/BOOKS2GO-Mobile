@@ -1,5 +1,5 @@
- <html>
-<head>
+<html>
+	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>books2go</title>
@@ -155,7 +155,10 @@ $(document).on("pagebeforeshow","#searchPage",function(){ // When entering paget
 		$("#user-foot").hide();
 	}
 	
+	
+	
 	GetRegions();
+	
 	SetSearch();
 		
 		
@@ -204,7 +207,7 @@ function GetRecentBooks(SID){
 	        SetWidth();
      	},
  	 	error: function(xhr, desc, err) {
-        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
 	   });      
 	}
@@ -224,7 +227,7 @@ function GetRegions(){
 	       
      	},
  	 	error: function(xhr, desc, err) {
-        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
 	   });         
 	}
@@ -258,7 +261,7 @@ function GetSchools(RID){
 		       
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });         	
 	}else{
@@ -268,12 +271,14 @@ function GetSchools(RID){
 	}
 	
 	function SetSearch(){
+		
 		var SRCH = "";
 		var TXT = window.localStorage.getItem("search-text");
 		var RID = window.localStorage.getItem("search-region");
 		var SID = window.localStorage.getItem("search-school");
 		
-		if(window.localStorage.getItem("search-data") !== undefined && window.localStorage.getItem("search-data") !== null){
+		if(window.localStorage.getItem("search-data") !== undefined && window.localStorage.getItem("search-data") !== null && window.localStorage.getItem("search-data") !== ""){
+			
 			SRCH = JSON.parse(window.localStorage.getItem("search-data"));
 		}
 		
@@ -392,7 +397,7 @@ function GetSchools(RID){
 				        	
 				        	
 				        	
-				        	var loc = $("#ddl-school").find(":selected").text()
+				        	var loc = $("#ddl-school").find(":selected").text();
 				        	if(loc == ""){
 				        		loc = "All schools in Canada";
 				        	}
@@ -411,7 +416,7 @@ function GetSchools(RID){
 			        	
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+			        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 			       }
 			   });  
 			}else{

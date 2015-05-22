@@ -106,7 +106,7 @@ $('#myBooksPage').bind('pageshow', function() {
 	    		
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });         		
 	}
@@ -135,7 +135,7 @@ $('#myBooksPage').bind('pageshow', function() {
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	      showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });         		
 	}

@@ -219,7 +219,7 @@ function UpdateUser(){
         	}
         },
  	 	error: function(xhr, desc, err) {
-       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+      showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
    });      
 	}else{
@@ -258,7 +258,7 @@ function GetUserInfo(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
        }
    });         		
 }

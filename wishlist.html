@@ -170,7 +170,7 @@
 	        	ResetView();
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });      
 		}
@@ -210,7 +210,7 @@
 			        	}
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+			     showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 			       }
 			   });         		
 		
@@ -234,7 +234,7 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 	       }
 	   });         		
 	}
@@ -271,8 +271,8 @@
 	        	
 	        	
 	     	},
-	 	 	error: function(xhr, desc, err) {
-	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	 	 	error: function(xhr, desc, err) {			 showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+	        
 	       }
 	   });         		
 	}
