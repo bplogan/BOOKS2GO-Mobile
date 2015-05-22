@@ -106,8 +106,7 @@ $('#myBooksPage').bind('pageshow', function() {
 	    		
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -136,8 +135,7 @@ $('#myBooksPage').bind('pageshow', function() {
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -177,7 +175,7 @@ $('#myBooksPage').bind('pageshow', function() {
 		var action = $("#ddlBookAction" + BID).val();
 		switch(action) {
 	    case 'slap':
-	        alert("OH KNOW YOU DI-ENT");
+	        
 	        break;
 	    case 'view':
 	    	window.localStorage["BID"] = BID;
@@ -195,17 +193,17 @@ $('#myBooksPage').bind('pageshow', function() {
 			    //insert logic with height or width calulations here.
 		
 		 if(ori == 90 || ori == -90){
-			 	//alert($(window).height() + " x1 " + $(window).width());
+			 	
 				var tw = $(window).width(); 
 				var w = $(window).width() - 190;
 			    $(".info").css("width", w);
-			    //alert("applied " + w);
+			   
 		 }else{
-			    //alert($(window).height() + " x " + $(window).width());
+			   
 				var tw = $(window).width(); 
 				var w = $(window).width() - 190;
 			    $(".info").css("width", w);
-			    //alert(" else applied " + w);
+			   
 		 }
 			}, 200);
 	  	

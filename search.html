@@ -54,7 +54,7 @@
 					
 					<form id="frm-search">
 						<fieldset>
-							<input type="text" id="txt-search" required="required" placeholder="title, author, isbn, or posting ID" />
+							<input type="text" id="txt-search" required="required" placeholder="title, author, isbn, or posting ID" data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
@@ -204,8 +204,7 @@ function GetRecentBooks(SID){
 	        SetWidth();
      	},
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("GetRecent: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
 	   });      
 	}
@@ -225,8 +224,7 @@ function GetRegions(){
 	       
      	},
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("GetRegions: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
 	   });         
 	}
@@ -260,8 +258,7 @@ function GetSchools(RID){
 		       
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("GetSchools: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         	
 	}else{
@@ -414,8 +411,7 @@ function GetSchools(RID){
 			        	
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         alert(xhr);
-			         alert("Search: " + desc + "\nError:" + err);
+			         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 			       }
 			   });  
 			}else{

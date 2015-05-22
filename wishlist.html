@@ -55,7 +55,7 @@
 			<p>Add a book to your wish list and get notified by e-mail as soon as it is available! By default, you will be alerted when the textbook you want is posted by another student from your school.</p>
 	        	
 			<form id="isbn-form">
-	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" />
+	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" data-clear-btn="true" />
 	            <button type="submit" style="background-color: #BCED91">Add</button>
 	        </form>
 	        
@@ -170,8 +170,7 @@
 	        	ResetView();
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert("displaywishlist");
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });      
 		}
@@ -211,8 +210,7 @@
 			        	}
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         alert("AddToWishList");
-			         alert("Details: " + desc + "\nError:" + err);
+			       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 			       }
 			   });         		
 		
@@ -236,8 +234,7 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert("RemoveFromWishList");
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -275,8 +272,7 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert("POST");
-	         alert("Details: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
