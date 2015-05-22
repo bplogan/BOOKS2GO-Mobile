@@ -80,8 +80,7 @@ function GetInboxCount(){
 	    		}
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });      
 	

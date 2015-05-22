@@ -30,8 +30,7 @@
 		        $("#r" + RID).show();
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -85,7 +84,7 @@ function init() {
 
 function SetToken(uuid,uid){
 	
-	alert("Set Token: " + uuid + ", " + uid);
+	
 	
 	if(uid > 0){
 		$.ajax({
@@ -98,8 +97,7 @@ function SetToken(uuid,uid){
 	        	window.location = "profile.html";	 
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   	});         		
 	}else{
@@ -117,10 +115,10 @@ function deviceReady() {
 		
 	var plat = device.platform;	
 	if(plat == "iPhone" || plat == "iOS"){
-		alert("registering ios");
+		
 		initPushwoosh_iOS();
 	}else{
-		alert("register android");
+		
 		initPushwoosh_android();
 	}
 			
@@ -173,7 +171,7 @@ function initPushwoosh_iOS() {
         },
         function(status) {
             console.warn('failed to register : ' + JSON.stringify(status));
-            alert(JSON.stringify(['failed to register ', status]));
+           
         }
     );
      

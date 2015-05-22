@@ -42,10 +42,10 @@
 			<form id="frm-login">
 			
 			<fieldset>
-				<input type="email" id="txt-email" required placeholder="email" />
+				<input type="email" id="txt-email" required placeholder="email"  data-clear-btn="true"/>
 			</fieldset>
 			<fieldset>
-				<input type="password" id="txt-password" required placeholder="password" />
+				<input type="password" id="txt-password" required placeholder="password" data-clear-btn="true" />
 			</fieldset>
 		
 			
@@ -134,8 +134,7 @@ function Login(){
         	
      	},
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });  
 	}else{
