@@ -128,4 +128,8 @@ optgroup {
 	text-shadow:none !important;
 }
 
+.ui-input-text, .ui-select, .ui-btn{
+	border-radius:0px !important;	
+}
+
 

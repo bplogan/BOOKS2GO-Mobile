@@ -58,7 +58,7 @@
 				<form id="frm-contact">
 					<fieldset>Please enter your email and message below to contact this seller</fieldset>
 					<fieldset>
-						<input type="email" id="txt-email" placeholder="Your email" required="required" />
+						<input type="email" id="txt-email" placeholder="Your email" required="required" data-clear-btn="true" />
 					</fieldset>
 					<fieldset>
 						<textarea rows="5" id="txt-message" required></textarea>
@@ -190,8 +190,7 @@
 	        	 $.mobile.loading( "hide" );
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -223,8 +222,8 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
+	        
 	       }
 	   });  
 		}else{
@@ -271,17 +270,17 @@
 			    //insert logic with height or width calulations here.
 		
 		 if(ori == 90 || ori == -90){
-			 	//alert($(window).height() + " x1 " + $(window).width());
+			 	
 				var tw = $(window).width(); 
 				var w = $(window).width() - 180;
 			    $(".info").css("width", w);
-			    //alert("applied " + w);
+			   
 		 }else{
-			    //alert($(window).height() + " x " + $(window).width());
+			   
 				var tw = $(window).width(); 
 				var w = $(window).width() - 180;
 			    $(".info").css("width", w);
-			    //alert(" else applied " + w);
+			  
 		 }
 			}, 200);
 	  	
