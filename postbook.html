@@ -57,7 +57,7 @@
 			 
 			<div id="type-isbn">
 			<form id="isbn-form">																				
-	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" />
+	         	<input type="text" placeholder="<enter isbn>" id="txt-isbn" maxlength="18" data-clear-btn="true" />
 	            <button id="btnisbn" type="submit" style="background-color: #BCED91">Search</button>
 	        </form>
 	        
@@ -70,8 +70,8 @@
 	        <div id="type-title" style="display:none">
 	        <form id="title-form">
 	        	
-	            <input type="text" placeholder="<enter title>" id="txt-title" />
-	            <input type="text" placeholder="<enter author>" id="txt-author" />
+	            <input type="text" placeholder="<enter title>" id="txt-title" data-clear-btn="true" />
+	            <input type="text" placeholder="<enter author>" id="txt-author" data-clear-btn="true" />
 	            <button id="btntitle" type="submit" style="background-color: #BCED91">Search</button>
 	        </form>
 	        </div>
@@ -93,13 +93,13 @@
         	
         	
         	 
-        	<input type="text" id="txt-course" data-type="search" placeholder="course" />
+        	<input type="text" id="txt-course" data-type="search" placeholder="course" data-clear-btn="true" />
         	<ul id="autocomplete1" data-role="listview" data-inset="true" data-filter="true" data-input="#txt-course" style="display:block !important;list-style:none !important"></ul>
         	        	
-        	<input type="text" id="txt-course2" data-type="search" placeholder="course 2" />
+        	<input type="text" id="txt-course2" data-type="search" placeholder="course 2" data-clear-btn="true" />
         	<ul id="autocomplete2" data-role="listview" data-inset="true" data-filter="true" data-input="#txt-course2" style="display:block !important;list-style:none !important"></ul>
         	        	
-        	<input type="number" id="txt-price" placeholder="price" />
+        	<input type="number" id="txt-price" placeholder="price" data-clear-btn="true" />
         	<textarea id="txt-desc" placeholder="description"></textarea>
         	<select id="ddlCondition">
         		<option value="0">Book condition</option>
@@ -203,8 +203,7 @@
 		        	
 		     	},
 		     	error: function(xhr, desc, err) {
-		        	alert(xhr);
-		         	alert("Details: " + desc + "\nError:" + err);
+		        	showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 		       }
 			})
 					}
@@ -232,8 +231,7 @@
 		        	
 		     	},
 		     	error: function(xhr, desc, err) {
-		        	alert(xhr);
-		         	alert("Details: " + desc + "\nError:" + err);
+		        	showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 		       }
 			})
 					}
@@ -297,8 +295,7 @@
 			        	window.location = "mybooks.html";
 			     	},
 			 	 	error: function(xhr, desc, err) {
-			         alert(xhr);
-			         alert("Details: " + desc + "\nError:" + err);
+			        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 			       }
 			   });         		
 			}else{
@@ -360,8 +357,7 @@
 	        	
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -432,6 +428,6 @@ function ResetView(){
 </div><!-- /page -->
 
 
-<script type="text/javascript" src="phonegap.js"></script><script type="text/javascript" src="barcodescanner.js"></script><script>	var app = {	    // Application Constructor	    initialize: function() {	        this.bindEvents();	    },	    // Bind Event Listeners	    //	    // Bind any events that are required on startup. Common events are:	    // `load`, `deviceready`, `offline`, and `online`.	    bindEvents: function() {	        document.addEventListener('deviceready', this.onDeviceReady, false);	        document.getElementById('scan').addEventListener('click', this.scan, false);	        //document.getElementById('encode').addEventListener('click', this.encode, false);	    },		    // deviceready Event Handler	    //	    // The scope of `this` is the event. In order to call the `receivedEvent`	    // function, we must explicity call `app.receivedEvent(...);`	    onDeviceReady: function() {	    	        app.receivedEvent('deviceready');	    },		    // Update DOM on a Received Event	    receivedEvent: function(id) {	        var parentElement = document.getElementById(id);	        var listeningElement = parentElement.querySelector('.listening');	        var receivedElement = parentElement.querySelector('.received');		        listeningElement.setAttribute('style', 'display:none;');	        receivedElement.setAttribute('style', 'display:block;');		        //alert('Received Event: ' + id);	    },		    scan: function() {	        //alert('scanning');	        	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.scan( function (result) { 					            $("#txt-isbn").val(result.text);	            PostISBN(1);	            /*	            if (args.format == "QR_CODE") {	                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });	            }	            */		        }, function (error) { 	            //alert("Scanning failed: ", error); 	        } );	    },		    encode: function() {	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {	            //alert("encode success: " + success);	          }, function(fail) {	            //alert("encoding failed: " + fail);	          }	        );		    }		};	</script><script>	app.initialize();</script>
+<script type="text/javascript" src="phonegap.js"></script><script type="text/javascript" src="barcodescanner.js"></script><script>	var app = {	    // Application Constructor	    initialize: function() {	        this.bindEvents();	    },	    // Bind Event Listeners	    //	    // Bind any events that are required on startup. Common events are:	    // `load`, `deviceready`, `offline`, and `online`.	    bindEvents: function() {	        document.addEventListener('deviceready', this.onDeviceReady, false);	        document.getElementById('scan').addEventListener('click', this.scan, false);	        //document.getElementById('encode').addEventListener('click', this.encode, false);	    },		    // deviceready Event Handler	    //	    // The scope of `this` is the event. In order to call the `receivedEvent`	    // function, we must explicity call `app.receivedEvent(...);`	    onDeviceReady: function() {	    	        app.receivedEvent('deviceready');	    },		    // Update DOM on a Received Event	    receivedEvent: function(id) {	        var parentElement = document.getElementById(id);	        var listeningElement = parentElement.querySelector('.listening');	        var receivedElement = parentElement.querySelector('.received');		        listeningElement.setAttribute('style', 'display:none;');	        receivedElement.setAttribute('style', 'display:block;');		        	    },		    scan: function() {	       	        	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.scan( function (result) { 					            $("#txt-isbn").val(result.text);	            PostISBN(1);	            /*	            if (args.format == "QR_CODE") {	                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });	            }	            */		        }, function (error) { 	          	        } );	    },		    encode: function() {	        var scanner = cordova.require("cordova/plugin/BarcodeScanner");		        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {	            	          }, function(fail) {	           	          }	        );		    }		};	</script><script>	app.initialize();</script>
 </body>
 </html>

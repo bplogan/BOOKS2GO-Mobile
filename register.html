@@ -53,32 +53,32 @@
 												
 						<fieldset>
 							<label for="txt-fname">First name</label>
-							<input type="text" id="txt-fname" required="required" />
+							<input type="text" id="txt-fname" required="required" data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-lname">Last name</label>
-							<input type="text" id="txt-lname" required="required" />
+							<input type="text" id="txt-lname" required="required" data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-displayname">Display name</label>
-							<input type="text" id="txt-displayname" required="required"  />
+							<input type="text" id="txt-displayname" required="required" data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-email">Email</label>
-							<input type="email" id="txt-email" required="required" />
+							<input type="email" id="txt-email" required="required" data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-password">Password</label>
-							<input type="password" id="txt-password" required="required" minlength="4"  />
+							<input type="password" id="txt-password" required="required" minlength="4" data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-verify">Retype</label>
-							<input type="password" id="txt-verify" required="required" minlength="4"  />
+							<input type="password" id="txt-verify" required="required" minlength="4"  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
@@ -239,8 +239,7 @@ function Register(){
         	}
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });      
 	}else{
@@ -265,8 +264,7 @@ function GetSchools(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+      showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });         		
 }
