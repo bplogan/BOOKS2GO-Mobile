@@ -66,7 +66,7 @@
 						<fieldset>
 							<label for="txt-major"><b>Your major</b></label>
 							<i>i.e. CIS</i>
-							<input type="text" id="txt-major" />
+							<input type="text" id="txt-major" data-clear-btn="true" />
 						</fieldset>
 						
 												
@@ -183,8 +183,7 @@ function UpdateSchools(){
         	}
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+         showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });      
 
@@ -212,8 +211,7 @@ function GetSchools(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });         		
 }
