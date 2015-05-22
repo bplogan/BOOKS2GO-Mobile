@@ -29,8 +29,7 @@
 		        $("#r" + RID).show();
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert(xhr);
-	         alert("Details: " + desc + "\nError:" + err);
+	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
@@ -334,8 +333,8 @@ function GetTotals(){
 		       
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert("Get Totals");
-	         alert("Details: " + desc + "\nError:" + err);
+	       
+	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
