@@ -62,17 +62,17 @@
 						
 						<fieldset>
 							<label for="txt-course">Course</label>
-							<input type="text" id="txt-course"  />
+							<input type="text" id="txt-course" data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-course2">Course 2</label>
-							<input type="text" id="txt-course2"  />
+							<input type="text" id="txt-course2" data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-price">Price</label>
-							<input type="number" id="txt-price" required  />
+							<input type="number" id="txt-price" required data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
@@ -96,32 +96,32 @@
 						
 						<fieldset>
 							<label for="txt-title">Title</label>
-							<input type="text" id="txt-title" required  />
+							<input type="text" id="txt-title" required data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-edition">Edition</label>
-							<input type="text" id="txt-edition"  />
+							<input type="text" id="txt-edition" data-clear-btn="true"  />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-author1">Author 1</label>
-							<input type="text" id="txt-author1"  />
+							<input type="text" id="txt-author1"  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-author2">Author 2</label>
-							<input type="text" id="txt-author2"  />
+							<input type="text" id="txt-author2"  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-author3">Author 3</label>
-							<input type="text" id="txt-author3"  />
+							<input type="text" id="txt-author3"  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-pages">Pages</label>
-							<input type="number" id="txt-pages"  />
+							<input type="number" id="txt-pages"  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
@@ -255,8 +255,7 @@ function UpdateBook(){
         	}, 3000);
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });         		
 	
@@ -292,8 +291,7 @@ function GetBookInfo(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });         		
 }

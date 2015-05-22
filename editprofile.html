@@ -53,22 +53,22 @@
 												
 						<fieldset>
 							<label for="txt-fname">First name</label>
-							<input type="text" id="txt-fname" required />
+							<input type="text" id="txt-fname" required data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-lname">Last name</label>
-							<input type="text" id="txt-lname" required />
+							<input type="text" id="txt-lname" required data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-displayname">Display name</label>
-							<input type="text" id="txt-displayname" required  />
+							<input type="text" id="txt-displayname" required  data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
 							<label for="txt-email">Email</label>
-							<input type="email" id="txt-email" required />
+							<input type="email" id="txt-email" required data-clear-btn="true" />
 						</fieldset>
 						
 						<fieldset>
@@ -219,8 +219,7 @@ function UpdateUser(){
         	}
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });      
 	}else{
@@ -259,8 +258,7 @@ function GetUserInfo(){
     		 
         },
  	 	error: function(xhr, desc, err) {
-         alert(xhr);
-         alert("Details: " + desc + "\nError:" + err);
+        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err);
        }
    });         		
 }
