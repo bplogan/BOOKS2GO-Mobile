@@ -130,6 +130,8 @@ optgroup {
 
 .ui-input-text, .ui-select, .ui-btn{
 	border-radius:0px !important;	
+	box-shadow:none;
 }
+
 
 

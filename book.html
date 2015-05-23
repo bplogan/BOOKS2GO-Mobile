@@ -163,11 +163,16 @@
 				$("#user-foot").hide();
 			}
 			
-			GetInboxCount();
+			if(window.localStorage["user_id"] !== undefined && window.localStorage["user_id"] !== null){
+				GetInboxCount();
+			}
 		});
 		
 	function DisplayBook(){
 		var UID = window.localStorage["user_id"];
+		if(window.localStorage["user_id"] == undefined || window.localStorage["user_id"] == null){
+			UID = 0;
+		}
 		var BID = window.localStorage["BID"];
 			$.ajax({
 	        type: "POST",
