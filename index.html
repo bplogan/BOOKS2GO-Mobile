@@ -125,7 +125,7 @@ function deviceReady() {
 	*/
 	
 	
-	PushbotsPlugin.debug(true);
+	
 	if(PushbotsPlugin.isiOS()){
 		
 		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
@@ -138,6 +138,7 @@ function deviceReady() {
 	
 	setTimeout(function(){
 		var uuid = device.uuid;	 
+		PushbotsPlugin.debug(true);
 		PushbotsPlugin.setAlias(uuid);  
 		window.location = "main.html";
 		
