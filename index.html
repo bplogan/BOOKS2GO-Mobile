@@ -136,7 +136,13 @@ function deviceReady() {
 	}
 	
 	
-	setTimeout(function(){ window.location = "main.html"; }, 3000);
+	setTimeout(function(){
+		var uuid = device.uuid;	 
+		PushbotsPlugin.setAlias(uuid);  
+		window.location = "main.html";
+		
+		
+	}, 3000);
 				
 	
 }
