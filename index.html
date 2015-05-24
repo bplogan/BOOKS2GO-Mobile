@@ -112,7 +112,8 @@ function deviceReady() {
 	console.log("deviceReady");
 	StatusBar.overlaysWebView(false);
 	
-		
+	
+	/*	
 	var plat = device.platform;	
 	if(plat == "iPhone" || plat == "iOS"){
 		
@@ -121,7 +122,15 @@ function deviceReady() {
 		
 		initPushwoosh_android();
 	}
-			
+	*/
+	
+	if(PushbotsPlugin.isiOS()){
+	PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
+	}
+	if(PushbotsPlugin.isAndroid()){
+		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
+	}
+				
 	
 }
 
