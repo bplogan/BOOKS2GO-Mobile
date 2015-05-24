@@ -125,13 +125,14 @@ function deviceReady() {
 	*/
 	
 	if(PushbotsPlugin.isiOS()){
-		PushbotsPlugin.debug(true);
+		
 		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
 	}
 	if(PushbotsPlugin.isAndroid()){
-		PushbotsPlugin.debug(true);
+		
 		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
 	}
+	PushbotsPlugin.debug(true);
 				
 	
 }
