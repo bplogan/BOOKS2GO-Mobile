@@ -34,6 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        StatusBar.overlaysWebView(false);
     },
     tokenHandler:function(msg) {
        	alert("Token Handler " + msg);
