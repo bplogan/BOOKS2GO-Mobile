@@ -34,8 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
     	if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-    		alert("IOS");
-			$("body").addClass("ios7");
+    		$("body").addClass("ios7");
 			$("body").append('');
 		
 		}
