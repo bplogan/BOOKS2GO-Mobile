@@ -8,8 +8,8 @@
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.mobile-1.4.3.min.js"></script>
 	<script src="js/main.js"></script>
+	<script type="text/javascript" src="PushNotification.js"></script>
 	<script src="phonegap.js"></script> 
-	
 	<script type="text/javascript" src="barcodescanner.js"></script>
 
 	<script>
@@ -17,23 +17,7 @@
 	
 	
 	
-	function GetSchools(RID){
-		$(".sub-item").hide();
-	   	$.ajax({
-	        type: "POST",
-	        url: "http://www.books2go.ca/mobiservice/common.php?regionschools=1",
-	        data: {'RID' : RID},
-	        dataType: "json",
-	        success: function(data) {
-	        	
-		        $("#r" + RID).html(data.result);
-		        $("#r" + RID).show();
-	     	},
-	 	 	error: function(xhr, desc, err) {
-	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-	       }
-	   });         		
-	}
+	
 	
 
 	</script>
@@ -42,7 +26,7 @@
 	</script>
 </head>
 
-<body onload="init()">
+<body>
 
 <div id="launcherPage" data-role="page" >
 
@@ -66,174 +50,7 @@
 
 
 <script>
-
-function init() {
-		
-	document.addEventListener("deviceready", deviceReady, false);
-	if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-		$("body").addClass("ios7");
-		$("body").append('');
-	}
-	
-
-
-	
-	
-	
-}
-
-function SetToken(uuid,uid){
-	
-	
-	
-	if(uid > 0){
-		$.ajax({
-	        type: "POST",
-	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-	        async: false,
-	        data: {'UUID' : uuid, 'UID' : uid},
-	        dataType: "json",
-	        success: function(data) {
-	        	window.location = "profile.html";	 
-	     	},
-	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-	       }
-	   	});         		
-	}else{
-		window.location = "main.html";
-	}		
-		
-}
-
-	
-function deviceReady() {
-		
-	console.log("deviceReady");
-	StatusBar.overlaysWebView(false);
-	
-	
-	/*	
-	var plat = device.platform;	
-	if(plat == "iPhone" || plat == "iOS"){
-		
-		initPushwoosh_iOS();
-	}else{
-		
-		initPushwoosh_android();
-	}
-	*/
-	
-	
-	
-	if(PushbotsPlugin.isiOS()){
-		
-		PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
-	}
-	if(PushbotsPlugin.isAndroid()){
-		
-		PushbotsPlugin.initializeAndroid("553fa49017795918698b4571", "758601829939");
-	}
-	
-	
-	setTimeout(function(){
-		var uuid = device.uuid;	 
-		PushbotsPlugin.debug(true);
-		PushbotsPlugin.setAlias(uuid);  
-		window.location = "main.html";
-		
-		
-	}, 3000);
-				
-	
-}
-
-function GoSearch(RID,SID){
-	window.localStorage.setItem("search-text","");
-	window.localStorage.setItem("search-region",RID);
-	window.localStorage.setItem("search-school",SID);
-	window.localStorage.setItem("search-data","");
-	window.location = "search.html";
-}
-
-
-	
-
-
-
-
-
-function initPushwoosh_iOS() {
-    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
- 	var uid = window.localStorage.getItem("user_id"); 
-    //set push notification callback before we initialize the plugin
-    document.addEventListener('push-notification', function(event) {
-        //get the notification payload
-        var notification = event.notification;
-        var data = event.notification.userdata;
-        window.localStorage["BID"] = data.bookid;
-        window.localStorage.setItem("PUSHURL",data.pushurl);
-       
-       	window.location = data.pushurl;
-       
-        
-       
-        //clear the app badge
-        pushNotification.setApplicationIconBadgeNumber(0);
-    });
- 
-    //initialize the plugin
-    pushNotification.onDeviceReady({pw_appid:"49CAB-F6ECD"});
-     
-    //register for pushes
-    pushNotification.registerDevice(
-        function(status) {
-            var deviceToken = status['deviceToken'];
-           	SetToken(deviceToken,uid);
-         	console.warn('registerDevice: ' + deviceToken);
-        },
-        function(status) {
-            console.warn('failed to register : ' + JSON.stringify(status));
-           
-        }
-    );
-     
-    //reset badges on app start
-    pushNotification.setApplicationIconBadgeNumber(0);
-}
-
-function initPushwoosh_android(){
-	var uid = window.localStorage.getItem("user_id"); 
-	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
-    document.addEventListener('push-notification', function(event) {
-        var title = event.notification.title;
-        var userData = event.notification.userdata;
-                                
-        if(typeof(userData) != "undefined") {
-        	window.localStorage["BID"] = userData.bookid;
-            window.localStorage.setItem("PUSHURL",userData.pushurl);
-           	window.location = userData.pushurl;
-            console.warn('user data: ' + JSON.stringify(userData));
-         }
-    });
- 
-	pushNotification.onDeviceReady({ projectid: "758601829939", pw_appid : "49CAB-F6ECD" });
-    pushNotification.registerDevice(
-        function(status) {
-            var deviceToken = status;
-            SetToken(deviceToken,uid);
-           
-            console.warn('push token: ' + deviceToken);
-        },
-        function(status) {
-            console.warn(JSON.stringify(['failed to register ', status]));
-        }
-    );
-}
-
-		
-		
-
+  app.initialize();
 
 </script>
 
