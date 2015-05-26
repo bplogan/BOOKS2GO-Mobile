@@ -33,42 +33,23 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-    	if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-    		$("body").addClass("ios7");
-			$("body").append('');
-		
-		}
-       	//StatusBar.overlaysWebView(false);
-       
-        
-        
-        
-        
-        
-        
+        app.receivedEvent('deviceready');
     },
     tokenHandler:function(msg) {
        	alert("Token Handler " + msg);
-       	var UID = window.localStorage.getItem("user_id");
-       	if(UID == undefined || UID == null || UID == ""){
-       		window.location = "main.html";
-       	}else{
-	       	$.ajax({
-		        type: "POST",
-		        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-		        async: false,
-		        data: {'UUID' : msg, 'UID' : '2432'},
-		        dataType: "json",
-		        success: function(data) {
-		        	alert('databased');
-		     	},
-		 	 	error: function(xhr, desc, err) {
-		        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-		       }
-		   	});   
-       	}
-       	
-        		
+       	  $.ajax({
+	        type: "POST",
+	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+	        async: false,
+	        data: {'UUID' : msg, 'UID' : '2432'},
+	        dataType: "json",
+	        success: function(data) {
+	        	alert('databased');
+	     	},
+	 	 	error: function(xhr, desc, err) {
+	        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+	       }
+	   	});         		
        	
        	
     },
@@ -128,24 +109,19 @@ var app = {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
                     alert('registration id = '+e.regid);
-                   	var UID = window.localStorage.getItem("user_id");
-			       	if(UID == undefined || UID == null || UID == ""){
-			       		window.location = "main.html";
-			       	}else{
-				       	$.ajax({
-					        type: "POST",
-					        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-					        async: false,
-					        data: {'UUID' : e.regid, 'UID' : UID},
-					        dataType: "json",
-					        success: function(data) {
-					        	window.location = "profile.html";
-					     	},
-					 	 	error: function(xhr, desc, err) {
-					        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-					       }
-					   	});   
-			       	}
+                    $.ajax({
+				        type: "POST",
+				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+				        async: false,
+				        data: {'UUID' : e.regid, 'UID' : '2432'},
+				        dataType: "json",
+				        success: function(data) {
+				        	alert('databased');
+				     	},
+				 	 	error: function(xhr, desc, err) {
+				        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+				       }
+				   	});         		
                 }
             break;
 
@@ -166,7 +142,3 @@ var app = {
     }
 
 };
-
-
-
-
