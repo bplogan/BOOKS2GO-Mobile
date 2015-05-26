@@ -28,7 +28,7 @@
 	</script>
 </head>
 
-<body>
+<body onload="init()">
 
 <div id="launcherPage" data-role="page" >
 
@@ -52,11 +52,17 @@
 
 
 <script>
-if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-			$("body").addClass("ios7");
-			$("body").append('');
-		
-			}
+	function init() {
+		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+					$("body").addClass("ios7");
+					$("body").append('');
+		}
+			
+	}
+
+
+
+
   app.initialize();
   
   
