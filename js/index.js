@@ -37,19 +37,26 @@ var app = {
     },
     tokenHandler:function(msg) {
        	alert("Token Handler " + msg);
-       	  $.ajax({
-	        type: "POST",
-	        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
-	        async: false,
-	        data: {'UUID' : msg, 'UID' : '2432'},
-	        dataType: "json",
-	        success: function(data) {
-	        	alert('databased');
-	     	},
-	 	 	error: function(xhr, desc, err) {
-	        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-	       }
-	   	});         		
+		var UIDt = window.localStorage.getItem("user_id");
+			if(UIDt > 0){       
+				alert("giver");	
+	       	  $.ajax({
+		        type: "POST",
+		        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+		        async: false,
+		        data: {'UUID' : msg, 'UID' : '2432'},
+		        dataType: "json",
+		        success: function(data) {
+		        	alert('databased');
+		        	window.location = "profile.html";
+		     	},
+		 	 	error: function(xhr, desc, err) {
+		        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+		       }
+		   	});         
+	   	}else{
+	   		window.location = "main.html";
+	   	}		
        	
        	
     },
@@ -109,6 +116,8 @@ var app = {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
                     alert('registration id = '+e.regid);
+                    var UID= window.localStorage.getItem("user_id");
+                    if(UID > 0){
                     $.ajax({
 				        type: "POST",
 				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
@@ -117,11 +126,15 @@ var app = {
 				        dataType: "json",
 				        success: function(data) {
 				        	alert('databased');
+				        	window.location = "profile.html";
 				     	},
 				 	 	error: function(xhr, desc, err) {
 				        alert(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
 				       }
-				   	});         		
+				   	});
+				   	}else{
+				   		window.location = "main.html";
+				   	}		
                 }
             break;
 
