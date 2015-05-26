@@ -34,6 +34,11 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
     	app.receivedEvent('deviceready');
+    		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+			$("body").addClass("ios7");
+			$("body").append('');
+		
+			}
        	StatusBar.overlaysWebView(false);
         
         
