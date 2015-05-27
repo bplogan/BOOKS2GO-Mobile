@@ -46,10 +46,11 @@ var app = {
 		        type: "POST",
 		        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
 		        async: false,
-		        data: {'UUID' : msg, 'UID' : '2432'},
+		        data: {'UUID' : msg, 'UID' : UIDt, 'platform' : 'ios'},
 		        dataType: "json",
 		        success: function(data) {
-		        	alert('databased');
+		        	window.localStorage.setItem("UUID",msg);
+				    window.localStorage.setItem("PLATFORM", 'ios');
 		        	window.location = "profile.html";
 		     	},
 		 	 	error: function(xhr, desc, err) {
@@ -107,6 +108,8 @@ var app = {
             var snd = new Media(event.sound);
             snd.play();
         }
+        var urlios = event.url;
+        window.location = urlios;
     },
     // Android
     onNotificationGCM: function(e) {
@@ -118,16 +121,17 @@ var app = {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
                     alert('registration id = '+e.regid);
-                    var UID= window.localStorage.getItem("user_id");
+                    var UID = window.localStorage.getItem("user_id");
                     if(UID > 0){
                     $.ajax({
 				        type: "POST",
 				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
 				        async: false,
-				        data: {'UUID' : e.regid, 'UID' : '2432'},
+				        data: {'UUID' : e.regid, 'UID' : UID, 'platform' : 'android'},
 				        dataType: "json",
 				        success: function(data) {
-				        	alert('databased');
+				        	window.localStorage.setItem("UUID",e.regid);
+				        	window.localStorage.setItem("PLATFORM", 'android');
 				        	window.location = "profile.html";
 				     	},
 				 	 	error: function(xhr, desc, err) {
@@ -144,6 +148,8 @@ var app = {
               // this is the actual push notification. its format depends on the data model
               // of the intermediary push server which must also be reflected in GCMIntentService.java
               alert('message = '+e.message+' msgcnt = '+e.msgcnt);
+              var urldroid = e.url;
+              window.location = urldroid;
             break;
 
             case 'error':
