@@ -10,8 +10,8 @@ function GetTotals(){
 		       
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	         alert("Get Totals");
-	         alert("Details: " + desc + "\nError:" + err);
+	         //alert("Get Totals");
+	         //alert("Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
