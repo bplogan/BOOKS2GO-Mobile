@@ -38,10 +38,10 @@ var app = {
         
     },
     tokenHandler:function(msg) {
-       	alert("Token Handler " + msg);
+       	//alert("Token Handler " + msg);
 		var UIDt = window.localStorage.getItem("user_id");
 			if(UIDt > 0){       
-				alert("giver");	
+				//alert("giver");	
 	       	  $.ajax({
 		        type: "POST",
 		        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
