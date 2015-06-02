@@ -69,7 +69,7 @@ var app = {
     },
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        alert('Success! Result = '+result);
+        //alert('Success! Result = '+result);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -120,7 +120,7 @@ var app = {
                 {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
-                    alert('registration id = '+e.regid);
+                    //alert('registration id = '+e.regid);
                     var UID = window.localStorage.getItem("user_id");
                     if(UID > 0){
                     $.ajax({
