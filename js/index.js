@@ -49,6 +49,7 @@ var app = {
 		        data: {'UUID' : msg, 'UID' : UIDt, 'platform' : 'ios'},
 		        dataType: "json",
 		        success: function(data) {
+		        	alert(data.test);
 		        	window.localStorage.setItem("UUID",msg);
 				    window.localStorage.setItem("PLATFORM", 'ios');
 		        	window.location = "profile.html";
