@@ -94,7 +94,7 @@ var app = {
             pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"758601829939","ecb":"app.onNotificationGCM"});
         }
         else {
-        	alert("7");
+        	alert("registering");
             pushNotification.register(this.tokenHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
         }
         var parentElement = document.getElementById(id);
