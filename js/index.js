@@ -43,6 +43,7 @@ var app = {
     tokenHandler:function(msg) {
     	alert("7");
        	//alert("Token Handler " + msg);
+       	if(window.localStorage.getItem("user_id") !== null && window.localStorage.getItem("user_id") !== undefined){
 		var UIDt = window.localStorage.getItem("user_id");
 		alert("8");
 			if(UIDt > 0){       
@@ -68,7 +69,11 @@ var app = {
 	   	}else{
 	   		alert("not logged in");
 	   		window.location = "main.html";
-	   	}		
+	   	}	
+	   	}else{
+	   		alert("not logged in");
+	   		window.location = "main.html";
+	   		}	
        	
        	
     },
