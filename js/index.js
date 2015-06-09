@@ -19,6 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
+    	alert("4");
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -26,6 +27,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+    	alert("5");
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -33,15 +35,18 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+    	alert("6");
     	StatusBar.overlaysWebView(false);
         app.receivedEvent('deviceready');
         
     },
     tokenHandler:function(msg) {
+    	alert("7");
        	//alert("Token Handler " + msg);
 		var UIDt = window.localStorage.getItem("user_id");
+		alert("8");
 			if(UIDt > 0){       
-				//alert("giver");	
+				alert("9");
 	       	  $.ajax({
 		        type: "POST",
 		        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
@@ -49,9 +54,11 @@ var app = {
 		        data: {'UUID' : msg, 'UID' : UIDt, 'platform' : 'ios'},
 		        dataType: "json",
 		        success: function(data) {
+		        	alert("10");
 		        	//alert(data.test);
 		        	window.localStorage.setItem("UUID",msg);
 				    window.localStorage.setItem("PLATFORM", 'ios');
+				    alert("11");
 		        	window.location = "profile.html";
 		     	},
 		 	 	error: function(xhr, desc, err) {
@@ -59,6 +66,7 @@ var app = {
 		       }
 		   	});         
 	   	}else{
+	   		alert("not logged in");
 	   		window.location = "main.html";
 	   	}		
        	
@@ -74,12 +82,14 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+    	
         var pushNotification = window.plugins.pushNotification;
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
             pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"758601829939","ecb":"app.onNotificationGCM"});
         }
         else {
+        	alert("6");
             pushNotification.register(this.tokenHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
         }
         var parentElement = document.getElementById(id);
