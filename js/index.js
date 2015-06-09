@@ -74,11 +74,11 @@ var app = {
     },
     errorHandler:function(error) {
         console.log("Error Handler  " + error);
-        alert(error);
+       alert("error");
     },
     // result contains any message sent from the plugin call
     successHandler: function(result) {
-        //alert('Success! Result = '+result);
+      alert("success");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -89,7 +89,7 @@ var app = {
             pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"758601829939","ecb":"app.onNotificationGCM"});
         }
         else {
-        	alert("6");
+        	alert("7");
             pushNotification.register(this.tokenHandler,this.errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
         }
         var parentElement = document.getElementById(id);
@@ -100,6 +100,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        alert("penis?");
     },
     // iOS
     onNotificationAPN: function(event) {
