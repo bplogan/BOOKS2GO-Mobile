@@ -45,9 +45,21 @@ var app = {
 		}
 		setTimeout(function(){ 
 			PushbotsPlugin.setAlias(uuid);
-		}, 3000);
+			
+			
+			if(window.localStorage.getItem("user_id") == null || window.localStorage.getItem("user_id") == undefined ){
+				window.location = "main.html";
+			}else{
+				if(window.localStorage.getItem("user_id") > 0){
+					window.location = "profile.html";
+				}else{
+					window.location = "main.html";
+				}
+			}
+			
+		}, 4000);
         
-        PushbotsPlugin.onNotificationClick(myMsgClickHandler);
+ 		      
         
        
         
@@ -59,7 +71,4 @@ var app = {
 };
 
 
- function myMsgClickHandler(msg){
-	    	alert("balls");
-	    	alert(JSON.stringify(msg));
-	 	}
+ 
