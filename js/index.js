@@ -65,6 +65,7 @@ var app = {
 				        success: function(data) {
 				    		
 				    		if(data.notifcation > 0){
+				    			window.localStorage["BID"] = data.bookid;
 				        		window.location = data.url;
 				        	}else{
 				        		window.location = "profile.html";
