@@ -49,10 +49,7 @@ var app = {
         
         PushbotsPlugin.onNotificationClick(myMsgClickHandler);
         
-        function myMsgClickHandler(msg){
-	    	console.log("Clicked On notification" + JSON.stringify(msg));
-	    	alert(JSON.stringify(msg));
-	 	}
+       
         
         
         
@@ -60,3 +57,9 @@ var app = {
     
 
 };
+
+
+ function myMsgClickHandler(msg){
+	    	alert("balls");
+	    	alert(JSON.stringify(msg));
+	 	}
