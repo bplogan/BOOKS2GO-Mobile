@@ -48,10 +48,39 @@ var app = {
 			
 			
 			if(window.localStorage.getItem("user_id") == null || window.localStorage.getItem("user_id") == undefined ){
+				
+				
 				window.location = "main.html";
 			}else{
 				if(window.localStorage.getItem("user_id") > 0){
-					window.location = "profile.html";
+					
+					
+					var UID = window.localStorage.getItem("user_id");
+					$.ajax({
+				        type: "POST",
+				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+				        async: false,
+				        data: {'UID' : UID ,'UUID' : uuid},
+				        dataType: "json",
+				        success: function(data) {
+				    		
+				    		if(data.notifcation > 0){
+				        		window.location = data.url;
+				        	}else{
+				        		window.location = "profile.html";
+				        	}
+				        	
+				     	},
+				 	 	error: function(xhr, desc, err) {
+				      	window.location = "main.html";
+				       }
+				   });         		
+					
+					
+					
+					
+					
+					
 				}else{
 					window.location = "main.html";
 				}
