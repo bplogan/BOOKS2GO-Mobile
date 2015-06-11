@@ -47,18 +47,12 @@ var app = {
 			PushbotsPlugin.setAlias(uuid);
 		}, 3000);
         
+        PushbotsPlugin.onNotificationClick(myMsgClickHandler);
         
-        PushbotsPlugin.onNotificationClick(
-        	function(){
-        		alert("OH SNAP");
-        	}
-        );
-        
-        PushbotsPlugin.onMsgClick(
-        	function(){
-        		alert("OH SNAP");
-        	}
-        );
+        function myMsgClickHandler(msg){
+	    	console.log("Clicked On notification" + JSON.stringify(msg));
+	    	alert(JSON.stringify(msg));
+	 	}
         
         
         
