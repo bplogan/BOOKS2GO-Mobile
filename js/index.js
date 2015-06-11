@@ -47,6 +47,21 @@ var app = {
 			PushbotsPlugin.setAlias(uuid);
 		}, 3000);
         
+        
+        PushbotsPlugin.onNotificationClick(
+        	function(){
+        		alert("OH SNAP");
+        	}
+        );
+        
+        PushbotsPlugin.onMsgClick(
+        	function(){
+        		alert("OH SNAP");
+        	}
+        );
+        
+        
+        
     },
     
 
