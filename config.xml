@@ -39,19 +39,14 @@
    
       
    	<!-- <gap:plugin name="com.pushwoosh.plugins.pushwoosh" source="plugins.cordova.io" /> -->
-   	<gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
-	<gap:plugin name="org.apache.cordova.statusbar"  />
+   	<gap:plugin name="org.apache.cordova.statusbar"  />
     <gap:plugin name="org.apache.cordova.network-information"  />
     <gap:plugin name="org.apache.cordova.device"  />
     <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
     <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
   
-    
-   
-    
-		
-	<gap:splash src="ios/screen-iphone-portrait.png"          gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="ios/screen-iphone-portrait.png"          gap:platform="ios"     width="320" height="480" />
 	<gap:splash src="ios/screen-iphone-portrait-2x.png"       gap:platform="ios"     width="640" height="960" />
 	<gap:splash src="ios/screen-iphone-landscape.png"         gap:platform="ios"     width="480" height="320" />
 	<gap:splash src="ios/screen-iphone-landscape-2x.png"      gap:platform="ios"     width="960" height="640" />
