@@ -370,7 +370,7 @@ function GetSchools(RID){
 			        data: {'searchText' : TXT, 'searchLocation' : SID, 'UID' : UID, 'SORT' : s, 'RID' : RID, 'PAGE' : page},
 			        dataType: "json",
 			        success: function(data) {
-			        
+			            
 			        	if(data.result == ''){
 			        		
 			        		$("#theresults").html("No books found for '" + TXT + "'");
@@ -378,8 +378,8 @@ function GetSchools(RID){
 			        		$("#btn-search").html("Search");
 			        		$("#rtitle").html("");
 			        	}else{
-			        		
-				        	ShowResults()
+			        		window.localStorage.setItem("sort",data.sort);
+				        	ShowResults();
 				        	window.localStorage.setItem("search-data",JSON.stringify(data.result));
 				        	window.localStorage.setItem("search-count",data.count);
 				        	window.localStorage.setItem("search-courses",data.courses);
@@ -489,7 +489,7 @@ function GetSchools(RID){
 	    case 'none':
 	    	//no sort
 	    	$(".book").show();
-	    	Search('',1)
+	    	Search('',1);
 	        break;   
 	    default:
 	    	SortOther();
@@ -506,7 +506,7 @@ function GetSchools(RID){
 	
 	function LoadMore(page){
 		
-		Search('',page);
+		Search(window.localStorage.getItem("sort"),page);
 		$("#a" + page).html("Loading...");
 	}
 	
