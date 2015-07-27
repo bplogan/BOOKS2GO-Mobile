@@ -324,9 +324,7 @@
 	        		
 	        		if(data.count > 0){
 	        			$("#results-msg").html(data.count + " books found");
-	        		}else{
-	        			$("#results-msg").html("No books were found");
-	        		}
+	        	
 	        		
 	        		if(page > 1){
 	        			$("#p" + page).hide();
@@ -347,7 +345,7 @@
 	        			window.localStorage.setItem("ADDID", $("#theid").html());
 	        			
 	        		}
-	        		
+	        			}else{							        			$("#results-msg").html("No books were found");	        		}				///
 	        	}else{
 	        		showErrorMessage(data.error, $("#err"), 0);
 	        	}
@@ -393,7 +391,7 @@
 	$('#isbn-form').submit(function (e) {
 	    e.preventDefault();
 	    PostISBN(1);
-	});
+	});
 	
 	$('#title-form').submit(function (e) {
 	    e.preventDefault();

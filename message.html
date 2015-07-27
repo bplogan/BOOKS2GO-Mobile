@@ -167,20 +167,24 @@
 			var CONTENT = $("#content1").val();
 			var SUBJECT = $("#subject").val();
 			var BID = $("#bookID").val();
-			$.ajax({
-			       type: "POST",
-			       url: "http://www.books2go.ca/mobiservice/send_reply.php",
-			       data: {'UID' : UID, 'C' : C, 'CONTENT' : CONTENT, 'SUBJECT' : SUBJECT, 'BID' : BID},
-			       dataType: "json",
-			       success: function(data) {
-			    	  
-			    	   GetMessage();
-			    	   showErrorMessage("Your reply has been sent!", $("#err"), 0);
-			     	},
-			 	 	error: function(xhr, desc, err) {
-			       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
-			       }
-			   });        
+			if(CONTENT.trim() !== ""){
+				$.ajax({
+				       type: "POST",
+				       url: "http://www.books2go.ca/mobiservice/send_reply.php",
+				       data: {'UID' : UID, 'C' : C, 'CONTENT' : CONTENT, 'SUBJECT' : SUBJECT, 'BID' : BID},
+				       dataType: "json",
+				       success: function(data) {
+				    	  
+				    	   GetMessage();
+				    	   showErrorMessage("Your reply has been sent!", $("#err"), 0);
+				     	},
+				 	 	error: function(xhr, desc, err) {
+				       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+				       }
+				   });        
+			  }else{
+			  	showErrorMessage("Please enter a reply.", $("#err"), 0);
+			  }
 		}
 	
 	
