@@ -142,7 +142,7 @@
   <li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">
     <h2>Profile</h2>
     <ul data-role="listview" data-theme="a">
-      <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>
+      <li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My books</a></li>
       <li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>
       <li><a href="inbox.html" data-rel="close" data-ajax="false">&nbsp; - Inbox</a></li>
       <li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>
@@ -175,8 +175,8 @@ $(document).on("pageshow","#editProfilePage",function(){
 			$("#login").hide();
 		}
 	}else{
-		$("#logout").hide();
-		$("#login").show();
+		localStorage.clear();
+		window.location = "index.html";
 	}
 
 	GetInboxCount();
