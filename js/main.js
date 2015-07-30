@@ -64,6 +64,7 @@ $(document).on('blur', 'input, textarea', function() {
 
 function GetInboxCount(){
 	var UID = window.localStorage.getItem("user_id")
+	if(UID > 0){
 	$.ajax({
 	       type: "POST",
 	       url: "http://www.books2go.ca/mobiservice/get_inboxcount.php",
@@ -80,10 +81,11 @@ function GetInboxCount(){
 	    		}
 	     	},
 	 	 	error: function(xhr, desc, err) {
-	        showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+	         alert(xhr);
+	         alert("Details: " + desc + "\nError:" + err);
 	       }
 	   });      
-	
+	}
 }
 
 

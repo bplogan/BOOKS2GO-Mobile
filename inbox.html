@@ -123,10 +123,8 @@
 					$("#login").hide();
 				}
 			}else{
-				$("#logout").hide();
-				$("#login").show();
-				$("#anon-foot").show();
-				$("#user-foot").hide();
+				localStorage.clear();
+				window.location = "index.html";
 			}
 			
 			GetInboxCount();
