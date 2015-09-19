@@ -1,6 +1,7 @@
 [data-role=header]{background-color:#F9F9F9 !important; border:none !important;height:40px !important }
-[data-role=footer]{background-color:transparent !important;background:url('../images/foot_bg.png');height:45px !important;padding:0 !important}
-[data-role=footer] .ui-btn{margin-top:0 !important;font-size:11px}
+
+
+[data-role=navbar]{background-color:#708EA3 !important;opacity 0.4}
 h5{padding:0;margin:0}
 font-size:14px;
 .cfix{clear:both}
@@ -24,7 +25,7 @@ p.logop{text-align:center;margin:0;padding:0}
 #results,#mybooks{width:100%}
 div.book{padding-top:10px;font-size:12px;clear:both}
 div.cover{float:left;width:130px}
-div.cover img{border:1px solid #F0F0F0;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;  }
+div.cover img{border:1px solid #F0F0F0;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;max-width:130px;  }
 div.info{float:left;margin-left:10px}
 div.info-title{float:left;font-weight:bold;font-size: 14px}
 div.info-heading{float:left;width:70px;color:#666;font-size: 14px}
@@ -113,6 +114,9 @@ optgroup {
 	
 	
 }
+.inbox-head{
+	margin-left:7px;
+}
 
 .center {
   
@@ -133,5 +137,17 @@ optgroup {
 	box-shadow:none;
 }
 
+.mytab {
+    width: 16.6% !important;  /* 12.5% for 8 tabs wide */
+    clear: none !important;  /* Prevent line break caused by ui-block-a */
+}
 
-
+#header, #head-buttons{overflow: hidden;}
+.ui-navbar li .ui-btn {border:none !important;}
+#header .ui-btn{background-color: transparent !important;}
+.transparentButton {
+    background-color: transparent !important;
+    border: 0 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

@@ -27,15 +27,7 @@
 <body >
 
 <div id="editSchoolsPage" data-role="page" data-ajax="false">
-	<div data-role="header" data-position="fixed" data-theme="a">
-      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a><a href="feedback.html" data-ajax="false" data-role="button" data-icon="comment" data-iconpos="notext">Feedback</a>
-    		
-        </div>
-       
-        
-    
- </div><!-- header -->
+<div data-role="header" data-position="fixed" data-theme="a" id="header">		<div data-role="navbar" id="head-buttons" data-iconpos="top">					</div>	</div><!-- header -->
 	
 	
 	<div data-role="content" id="content">
@@ -91,20 +83,7 @@
          
 	</div>
 
-  <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
-	<div id="user-foot">
-	 <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
-		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' style="display:none" ></span></a>
-   </div>
-    <div id="anon-foot" style="display:none">
-    	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Search</a>
-		
-    </div>
-  </div>
+  
 
 
 
@@ -135,12 +114,7 @@
 
 
 <script>
-
-$(document).on("pagebeforeshow","#editSchoolsPage",function(){ // When entering pagetwo
-	
-	
-	
-});
+$(document).on('pagebeforecreate', '#editSchoolsPage', function(){       	LoadHeader();});
 $(document).on("pageshow","#editSchoolsPage",function(){
 	
 	GetSchools();
