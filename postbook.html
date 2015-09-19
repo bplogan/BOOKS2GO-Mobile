@@ -29,15 +29,7 @@
 <body >
 
 <div id="postBookPage" data-role="page"  >
-	<div data-role="header" data-position="fixed" data-theme="a" id="header">
-      	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-    		<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>			<a href="feedback.html" data-ajax="false" data-role="button" data-icon="comment" data-iconpos="notext">Feedback</a>
-    		
-        </div>
-        
-        
-    
- </div><!-- header -->
+<div data-role="header" data-position="fixed" data-theme="a" id="header">		<div data-role="navbar" id="head-buttons" data-iconpos="top">					</div>	</div><!-- header -->
 	
 	
 	<div data-role="content" id="content">				<p id="info"></p>		  <div id="deviceready" class="blink" style="display:none">                <p class="event listening">Connecting to Device</p>                <p class="event received">Device is Ready</p>            </div>		
@@ -127,20 +119,7 @@
 </div>
 
 
-  <div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
-	<div id="user-foot">
-	  <a data-ajax="false" data-shadow="false" data-corner="false" href="profile.html" data-role="button" data-icon="booksfoot" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Profile</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D;border-right:1px solid #75838D" >Search</a>
-		<a data-ajax="false" data-shadow="false" data-corner="false"  href="postbook.html" data-role="button" data-icon="plus" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;" >Post</a>
-		<a data-ajax="false"  class="ui-li-has-count" data-shadow="false" data-corner="false"  href="inbox.html" data-role="button" data-icon="mail" data-iconpos="top" style="width:20%;background-color:transparent !important;color:#3A4E5C;text-shadow:0 0 0;border:none;border-left:1px solid #75838D" >Inbox<span class='inbox-count' style="display:none" ></span></a>
-   </div>
-    <div id="anon-foot" style="display:none">
-    	<a data-ajax="false" data-shadow="false" data-corner="false" href="login.html" data-role="button" data-icon="user" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Login</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="register.html" data-role="button" data-icon="gear" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;border-left:1px solid #75838D;border-right:1px solid #75838D" >Register</a>
-    	<a data-ajax="false" data-shadow="false" data-corner="false"  href="search.html" data-role="button" data-icon="search" data-iconpos="top" style="width:29%;background-color:transparent !important;color:#3A4E5C;border:none;text-shadow:0 0 0;" >Search</a>
-		
-    </div>
-  </div>
+ 
 
 <div data-role="panel" id="mypanel" data-theme="a" style='padding:0;margin:0;'>
 <img src="images/logo3.png" width="100%" />
@@ -170,8 +149,8 @@
 
 
 <script>
-
-	$(document).on("pagebeforeshow","#postBookPage",function(){ // When entering pagetwo
+$(document).on('pagebeforecreate', '#postBookPage', function(){       	LoadHeader();});
+	$(document).on("pagebeforeshow","#postBookPage",function(){ // When entering pagetwo		
 		if(window.localStorage.getItem("user_id")){
 			if(window.localStorage.getItem("user_id") > 0){
 				$("#uprofile").show();
