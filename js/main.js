@@ -63,7 +63,7 @@ $(document).on('blur', 'input, textarea', function() {
 
 
 function GetInboxCount(){
-	var UID = window.localStorage.getItem("user_id")
+	var UID = window.localStorage.getItem("user_id");
 	if(UID > 0){
 	$.ajax({
 	       type: "POST",
@@ -88,6 +88,49 @@ function GetInboxCount(){
 	}
 }
 
+function LoadHeader(){
+	if(window.localStorage.getItem("user_id") > 0){
+		
+		$('#header [data-role="navbar"]').html('<ul>' +
+        '<li class="mytab"><a href="#mypanel"  data-icon="bars" class="ui-nodisc-icon transparentButton"></a></li>' +
+        '<li class="mytab"><a data-ajax="false"  href="search.html"  data-icon="search" class="ui-nodisc-icon transparentButton"></a></li>' +
+        '<li class="mytab"><a data-ajax="false"  href="postbook.html"  data-icon="plus" class="ui-nodisc-icon transparentButton"  ></a></li>' +
+        '<li class="mytab"><a data-ajax="false"  href="inbox.html"  data-icon="mail" class="ui-nodisc-icon transparentButton" ><span class="inbox-count inbox-head" id="inbox-head" style="padding:1px;display:none;text-shadow:none"  ></span></a></li>' +
+        '<li class="mytab"><a data-ajax="false"  href="profile.html"  data-icon="user" class="ui-nodisc-icon transparentButton" ></a></li>' +
+        '<li class="mytab"><a href="feedback.html" data-ajax="false"  data-icon="comment" class="ui-nodisc-icon transparentButton" ></a></li>' +
+        '</ul>');
+		GetInboxCount();
+	}else{
+		$('[data-role="navbar"]').html('<ul>' +
+        '<li><a data-ajax="false" href="login.html" data-icon="user" class="ui-nodisc-icon transparentButton" ></a>' +
+        '<li><a data-ajax="false" href="register.html" data-icon="gear" class="ui-nodisc-icon transparentButton" ></a>' +
+        '<li><a data-ajax="false" href="search.html" data-icon="search" class="ui-nodisc-icon transparentButton" ></a>' +
+        '</ul>');
+		
+	}
+}
+function LoadPanel(){
+	
+$('[data-role="panel"]').html(' ' +	
+'<img src="images/logo3.png" width="100%" />' + 
+'<div style="height:30px"></div>' +
+'<ul data-role="listview" id="menu">' +
+'<li><a href="javascript:GoHome()" data-rel="close" data-ajax="false">Home</a></li>' +
+'<li><a href="search.html" data-rel="close" data-ajax="false">Search</a></li>' +
+'<li id="uprofile" style="display:none" data-role="collapsible" data-iconpos="right" data-inset="false">' +
+'<h2>Profile</h2>' +
+'<ul data-role="listview" data-theme="a">' +
+'<li><a href="mybooks.html" data-rel="close" data-ajax="false">&nbsp; - My textbooks</a></li>' +
+'<li><a href="postbook.html" data-rel="close" data-ajax="false">&nbsp; - Post a textbook</a></li>' +
+'<li><a href="inbox.html" data-rel="close" data-ajax="false">&nbsp; - Inbox</a></li>' +
+'<li><a href="wishlist.html" data-rel="close" data-ajax="false">&nbsp; - Wish list</a></li>' +
+'<li><a href="editprofile.html" data-rel="close" data-ajax="false">&nbsp; - Edit profile</a></li>' +
+'<li><a href="editschools.html" data-rel="close" data-ajax="false">&nbsp; - Edit schools</a></li>' +
+'<li><a href="changepassword.html" data-rel="close" data-ajax="false">&nbsp; - Change password</a></li>' +
+'</ul>' +
+'</li>' +
+'<li style="display:none" id="logout"><a href="logout.html" data-rel="user" data-ajax="false">Log out</a></li>' +
+'<li style="display:none" id="login"><a href="login.html" data-rel="user" data-ajax="false">Log In</a></li>' +
+'</ul>');
 
-
-
+}
