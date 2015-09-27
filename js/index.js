@@ -47,7 +47,7 @@ var app = {
 		setTimeout(function(){ 
 			PushbotsPlugin.setAlias(uuid);
 			
-			
+			alert("from index.js: " + window.localStorage.getItem("user_id"));
 			if(window.localStorage.getItem("user_id") == null || window.localStorage.getItem("user_id") == undefined ){
 				
 				
