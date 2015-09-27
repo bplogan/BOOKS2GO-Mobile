@@ -282,10 +282,10 @@
 
 <script>
 $(document).on('pagebeforecreate', '#mainPage', function(){       
-	//LoadHeader();
+	
 });
 $('#mainPage').bind('pageshow', function() {
-	
+	LoadHeader();
 	//GetTotals();
 	$(".lst").listview();
 	$("#logout").hide();
