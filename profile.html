@@ -71,7 +71,7 @@
 <script>$(document).on('pagebeforecreate', '#profilePage', function(){       	LoadHeader();});
 
 $(document).on("pagebeforeshow","#profilePage",function(){ // When entering pagetwo
-	
+	alert("from profile.html : " + window.localStorage.getItem("user_id"));
 	$("#welcome").html(window.localStorage.getItem("username"));
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		if(window.localStorage.getItem("user_id") > 0){

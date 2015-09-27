@@ -91,7 +91,7 @@ function GetInboxCount(){
 function LoadHeader(){
 	
 	if(window.localStorage.getItem("user_id") > 0){
-		alert("from main.js loadheader: " + window.localStorage.getItem("user_id"));
+		
 		$('#head-buttons').html('<ul>' +
         '<li class="mytab"><a href="#mypanel"  data-icon="bars" class="ui-nodisc-icon transparentButton"></a></li>' +
         '<li class="mytab"><a data-ajax="false"  href="search.html"  data-icon="search" class="ui-nodisc-icon transparentButton"></a></li>' +

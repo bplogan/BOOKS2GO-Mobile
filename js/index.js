@@ -37,6 +37,7 @@ var app = {
     	cordova.plugins.notification.badge.set(0);
     	cordova.plugins.notification.badge.clear();
     	var uuid = device.uuid;
+    	alert(uuid);
     	StatusBar.overlaysWebView(false);
         if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
@@ -47,7 +48,7 @@ var app = {
 		setTimeout(function(){ 
 			PushbotsPlugin.setAlias(uuid);
 			
-			alert("from index.js: " + window.localStorage.getItem("user_id"));
+			
 			if(window.localStorage.getItem("user_id") == null || window.localStorage.getItem("user_id") == undefined ){
 				
 				
