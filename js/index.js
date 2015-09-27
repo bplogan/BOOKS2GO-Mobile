@@ -34,8 +34,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-    	cordova.plugins.notification.badge.clear();
     	cordova.plugins.notification.badge.set(0);
+    	cordova.plugins.notification.badge.clear();
     	var uuid = device.uuid;
     	StatusBar.overlaysWebView(false);
         if(PushbotsPlugin.isiOS()){
