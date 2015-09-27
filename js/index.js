@@ -61,7 +61,7 @@ var app = {
 					
 					$.ajax({
 				        type: "POST",
-				        url: "http://books2go.ca/mobiservice/notification.php?reg=1",
+				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
 				        async: false,
 				        data: {'UID' : UID ,'UUID' : uuid},
 				        dataType: "json",
