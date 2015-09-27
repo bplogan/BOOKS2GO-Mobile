@@ -65,16 +65,19 @@ var app = {
 				        data: {'UID' : UID ,'UUID' : uuid},
 				        dataType: "json",
 				        success: function(data) {
-				    		
+				    		alert("success");
 				    		if(data.notifcation > 0){
+				    			alert("1");
 				    			window.localStorage["BID"] = data.bookid;
 				        		window.location = data.url;
 				        	}else{
+				        		alert("2");
 				        		window.location = "profile.html";
 				        	}
 				        	
 				     	},
-				 	 	error: function(xhr, desc, err) {
+				 	 	error: function(xhr, desc,err) {
+				 	 		alert("errorhere");
 				      	window.location = "main.html";
 				       }
 				   });         		
