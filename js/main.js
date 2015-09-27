@@ -1,21 +1,3 @@
-function GetTotals(){
-		$(".sub-item").hide();
-	   	$.ajax({
-	        type: "POST",
-	        url: "http://books2go.ca/mobiservice/common.php?booktotals=1",
-	        data: {},
-	        dataType: "json",
-	        success: function(data) {
-	        	
-		       
-	     	},
-	 	 	error: function(xhr, desc, err) {
-	         //alert("Get Totals");
-	         //alert("Details: " + desc + "\nError:" + err);
-	       }
-	   });         		
-	}
-
 function GoHome(){
 	if(window.localStorage.getItem("user_id")){
 		if(window.localStorage.getItem("user_id") > 0){

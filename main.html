@@ -314,6 +314,8 @@ function GetTotals(){
 	        url: "http://www.books2go.ca/mobiservice/common.php?booktotals=1",
 	        data: {},
 	        dataType: "json",
+	        crossDomain: true,
+
 	        success: function(data) {
 	        	
 	        	$("#sTotalBooks").html(data.totalbooks);
@@ -323,7 +325,7 @@ function GetTotals(){
 	     	},
 	 	 	error: function(xhr, desc, err) {
 	       
-	       showErrorMessage(xhr + " Details: " + desc + "\nError:" + err, $("#err"), 0);
+	       		alert(xhr + " Details: " + desc + "\nError:" + err);
 	       }
 	   });         		
 	}
