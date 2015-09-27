@@ -44,6 +44,7 @@
     <gap:plugin name="cordova-plugin-device" source="npm"   />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm"  />
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm"  />
     <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
     <gap:plugin name="de.appplant.cordova.plugin.badge"  />
   
@@ -95,6 +96,9 @@
 
         Otherwise, you can specify specific domains:
     -->
+    
+    <allow-navigation href="*://*.books2go.ca/*" />
+    
     <access origin="*"/>
    	<access origin="*.pushbots.com" />
     
