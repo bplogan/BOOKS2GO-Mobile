@@ -101,7 +101,7 @@ function LoadHeader(){
         '</ul>');
 		GetInboxCount();
 	}else{
-		$('[data-role="navbar"]').html('<ul>' +
+		$('#header [data-role="navbar"]').html('<ul>' +
         '<li><a data-ajax="false" href="login.html" data-icon="user" class="ui-nodisc-icon transparentButton" ></a>' +
         '<li><a data-ajax="false" href="register.html" data-icon="gear" class="ui-nodisc-icon transparentButton" ></a>' +
         '<li><a data-ajax="false" href="search.html" data-icon="search" class="ui-nodisc-icon transparentButton" ></a>' +
