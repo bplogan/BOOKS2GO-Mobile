@@ -89,9 +89,10 @@ function GetInboxCount(){
 }
 
 function LoadHeader(){
+	
 	if(window.localStorage.getItem("user_id") > 0){
 		
-		$('#header [data-role="navbar"]').html('<ul>' +
+		$('#head-buttons').html('<ul>' +
         '<li class="mytab"><a href="#mypanel"  data-icon="bars" class="ui-nodisc-icon transparentButton"></a></li>' +
         '<li class="mytab"><a data-ajax="false"  href="search.html"  data-icon="search" class="ui-nodisc-icon transparentButton"></a></li>' +
         '<li class="mytab"><a data-ajax="false"  href="postbook.html"  data-icon="plus" class="ui-nodisc-icon transparentButton"  ></a></li>' +
@@ -99,9 +100,14 @@ function LoadHeader(){
         '<li class="mytab"><a data-ajax="false"  href="profile.html"  data-icon="user" class="ui-nodisc-icon transparentButton" ></a></li>' +
         '<li class="mytab"><a href="feedback.html" data-ajax="false"  data-icon="comment" class="ui-nodisc-icon transparentButton" ></a></li>' +
         '</ul>');
+        
+		$("#head-buttons").show();
+
+		
 		GetInboxCount();
 	}else{
-		$('#header [data-role="navbar"]').html('<ul>' +
+		
+		$('#head-buttons').html('<ul>' +
         '<li><a data-ajax="false" href="login.html" data-icon="user" class="ui-nodisc-icon transparentButton" ></a>' +
         '<li><a data-ajax="false" href="register.html" data-icon="gear" class="ui-nodisc-icon transparentButton" ></a>' +
         '<li><a data-ajax="false" href="search.html" data-icon="search" class="ui-nodisc-icon transparentButton" ></a>' +
