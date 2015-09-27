@@ -98,6 +98,7 @@
     -->
     
     <allow-navigation href="*://*.books2go.ca/*" />
+    <allow-navigation href="*://*.pushbots.com/*" />
     
     <access origin="*"/>
    	<access origin="*.pushbots.com" />
