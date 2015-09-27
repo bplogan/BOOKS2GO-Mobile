@@ -37,7 +37,7 @@ var app = {
     	cordova.plugins.notification.badge.set(0);
     	cordova.plugins.notification.badge.clear();
     	var uuid = device.uuid;
-    	alert(uuid);
+    	
     	StatusBar.overlaysWebView(false);
         if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
@@ -58,10 +58,10 @@ var app = {
 					
 					
 					var UID = window.localStorage.getItem("user_id");
-					alert(UID + " " + uuid);
+					
 					$.ajax({
 				        type: "POST",
-				        url: "http://www.books2go.ca/mobiservice/notification.php?reg=1",
+				        url: "http://books2go.ca/mobiservice/notification.php?reg=1",
 				        async: false,
 				        data: {'UID' : UID ,'UUID' : uuid},
 				        dataType: "json",

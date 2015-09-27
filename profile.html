@@ -34,11 +34,7 @@
 			<a data-ajax="false" href="mybooks.html" data-role="button" data-icon="books">My Books</a>	
 			<a data-ajax="false" href="postbook.html" data-role="button" data-icon="plus">Post a Textbook</a>
 			
-			<a data-ajax="false" href="inbox.html" data-role="button" data-icon="mail">Inbox &nbsp;<span class="inbox-count" style='padding:1px;display:none;text-shadow:none'  ></span></a>
-			<a data-ajax="false" href="wishlist.html" data-role="button" data-icon="star">Wish list</a>
-			<a data-ajax="false" href="editprofile.html" data-role="button" data-icon="user">Edit Profile</a>
-			<a data-ajax="false" href="editschools.html" data-role="button" data-icon="home">Edit Schools</a>
-			<a data-ajax="false" href="changepassword.html" data-role="button" data-icon="lock">Change password</a>		
+			<a data-ajax="false" href="inbox.html" data-role="button" data-icon="mail">Inbox &nbsp;<span class="inbox-count" style='padding:1px;display:none;text-shadow:none'  ></span></a>			<a data-ajax="false" href="wishlist.html" data-role="button" data-icon="star">Wish list</a>			<a data-ajax="false" href="editprofile.html" data-role="button" data-icon="user">Edit Profile</a>			<a data-ajax="false" href="editschools.html" data-role="button" data-icon="home">Edit Schools</a>			<a data-ajax="false" href="changepassword.html" data-role="button" data-icon="lock">Change password</a>		
 		</div>	
 			
 	</div>
@@ -71,7 +67,7 @@
 <script>$(document).on('pagebeforecreate', '#profilePage', function(){       	LoadHeader();});
 
 $(document).on("pagebeforeshow","#profilePage",function(){ // When entering pagetwo
-	alert("from profile.html : " + window.localStorage.getItem("user_id"));
+	
 	$("#welcome").html(window.localStorage.getItem("username"));
 	if(window.localStorage.getItem("user_id") !== undefined && window.localStorage.getItem("user_id") !== null){
 		if(window.localStorage.getItem("user_id") > 0){

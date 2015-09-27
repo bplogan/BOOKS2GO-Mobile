@@ -2,7 +2,7 @@ function GetTotals(){
 		$(".sub-item").hide();
 	   	$.ajax({
 	        type: "POST",
-	        url: "http://www.books2go.ca/mobiservice/common.php?booktotals=1",
+	        url: "http://books2go.ca/mobiservice/common.php?booktotals=1",
 	        data: {},
 	        dataType: "json",
 	        success: function(data) {
