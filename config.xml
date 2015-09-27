@@ -39,11 +39,11 @@
    
       
    	<!-- <gap:plugin name="com.pushwoosh.plugins.pushwoosh" source="plugins.cordova.io" /> -->
-   	<gap:plugin name="org.apache.cordova.statusbar" source="npm"   />
-    <gap:plugin name="org.apache.cordova.network-information" source="npm"  />
-    <gap:plugin name="org.apache.cordova.device" source="npm"   />
-    <gap:plugin name="org.apache.cordova.file-transfer" source="npm"  />
-    <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"  />
+   	<gap:plugin name="cordova-plugin-statusbar" source="npm"   />
+    <gap:plugin name="cordova-plugin-network-information" source="npm"  />
+    <gap:plugin name="cordova-plugin-device" source="npm"   />
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm"  />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
     <gap:plugin name="com.pushbots.push" version="1.2.3" source="plugins.cordova.io" />
     <gap:plugin name="de.appplant.cordova.plugin.badge"  />
   
