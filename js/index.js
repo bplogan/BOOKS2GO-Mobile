@@ -65,6 +65,7 @@ var app = {
 				        async: false,
 				        data: {'UID' : UID ,'UUID' : uuid},
 				        dataType: "json",
+				        crossDomain: true,
 				        success: function(data) {
 				    		
 				    		if(data.notifcation > 0){
