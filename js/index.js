@@ -36,8 +36,8 @@ var app = {
     onDeviceReady: function() {
     	cordova.plugins.notification.badge.set(0);
     	cordova.plugins.notification.badge.clear();
-    	var uuid = device.uuid;
-    	StatusBar.overlaysWebView(false);
+    	var uuid = 'abcd'; //device.uuid;
+    	//StatusBar.overlaysWebView(false);
         if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("553fa49017795918698b4571");
 		}
